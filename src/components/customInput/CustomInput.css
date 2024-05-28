@@ -1,0 +1,45 @@
+.defaultInputs > input {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: solid 0.5px #d6d6d6;
+    outline: none;
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    width: 60%;
+    color: #0b3b5b;
+    align-self: center;
+}
+
+.input-group {
+    font-size: 1.25rem;
+    position: relative;
+    --primary: #0b3b5b;
+}
+
+.label {
+    position: absolute;
+    top: 1rem;
+    left: 24rem;
+    color: #757575;
+    pointer-events: none;
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.defaultInputs > input:focus {
+    border: 1px solid var(--primary);
+}
+
+.defaultInputs > input:is(:focus, :not(:placeholder-shown)) ~ label {
+    transform: translateY(-120%) scale(0.7);
+    background-color: #fff;
+    padding-inline: 0.3rem;
+    color: var(--primary);
+}
+
+input[type=datetime-local]::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type=datetime-local]:focus::-webkit-datetime-edit {
+    color: var(--primary) !important;
+}

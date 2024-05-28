@@ -1,0 +1,17 @@
+.defaultButton {
+    width: 15%;
+    height: 3.5rem;
+    align-self: center;
+    cursor: pointer;
+    border: solid 2px #0047AB !important;
+    background-color: #0047AB;
+    color: #ffffff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.defaultButton:hover {
+    background-color: #000080;
+    color: #fff;
+}
