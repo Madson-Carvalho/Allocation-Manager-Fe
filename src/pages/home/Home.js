@@ -2,6 +2,7 @@ import './Home.css';
 import Footer from '../../components/footer/Footer';
 import Main from "../../components/main/Main";
 import ReactTable from "../../components/ReactTable/ReactTable";
+import Header from "../../components/header/Header";
 
 const Home = () => {
     const projects = [
@@ -72,6 +73,7 @@ const Home = () => {
 
     return (
         <>
+            <Header/>
             <Main>
                 <ReactTable data={projects} columns={columns} title="Projetos" />
             </Main>
