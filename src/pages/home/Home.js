@@ -74,7 +74,7 @@ const Home = () => {
     return (
         <>
             <Header/>
-            <Main url='/'>
+            <Main url='/create-project'>
                 <ReactTable data={projects} columns={columns} title="Projetos" />
             </Main>
             <Footer/>

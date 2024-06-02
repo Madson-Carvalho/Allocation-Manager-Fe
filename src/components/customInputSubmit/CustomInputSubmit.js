@@ -1,4 +1,4 @@
-import './CustomInputSubimit.css';
+import './CustomInputSubmit.css';
 
 const CustomInputSubmit = ({value}) => {
     return (
