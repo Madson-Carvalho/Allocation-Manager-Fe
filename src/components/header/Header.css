@@ -1,0 +1,37 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background-color: #2A63A9;
+    height: 6rem;
+    color: #ffffff;
+}
+
+header > nav > a {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff !important;
+}
+
+header > nav > a:hover {
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+header > a > svg {
+    color: #ffffff !important;
+}
+
+header > a > img {
+    height: 8rem;
+}
+
+header > nav {
+    display: flex;
+    gap: 2rem;
+}
