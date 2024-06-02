@@ -3,7 +3,7 @@ import React from "react";
 import {useTable, useFilters, usePagination} from "react-table";
 import {TextFilter} from "./TextFilter";
 
-export default function ReactTable({columns, data}) {
+export default function ReactTable({columns, data, title}) {
     const {
         headerGroups,
         page,
@@ -40,6 +40,12 @@ export default function ReactTable({columns, data}) {
             )}
             <table className="customTable">
                 <thead>
+                {headerGroups[0].headers.length > 0 ?
+                    <tr>
+                        <th colSpan={headerGroups[0].headers.length} id="tableTitle">
+                            {title}
+                        </th>
+                    </tr> : null}
                 {headerGroups.map(headerGroup => (
                     <tr key={headerGroup.id}>
                         {headerGroup.headers.map(column => (
