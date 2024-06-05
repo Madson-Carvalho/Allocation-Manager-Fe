@@ -1,5 +1,11 @@
+.tableContent {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
 .customTable {
-    width: 98%;
+    /*width: 98%;*/
     border-collapse: collapse;
 }
 
@@ -27,22 +33,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.625rem;
     border-radius: 10px;
 }
 
 .filterContainer {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     text-align: center;
     font-size: 1rem;
-    padding: 1rem 0.5rem;
-    min-width: 98%;
-    max-width: 98%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    min-width: 100%;
+    max-width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
     gap: 0.5rem 0;
-
 }
 
 .customButton {
@@ -61,7 +67,7 @@
 .tableFooter {
     display: flex;
     justify-content: space-between;
-    width: 98% ;
+    width: 100% ;
     padding: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -71,23 +77,41 @@
 .filterInput {
     padding: 0.5rem;
     font-size: 1.2rem;
-    border-radius: 8px;
+    border-radius: 5px;
     border: solid 0.5px #d6d6d6;
     outline: none;
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    width: 70%;
     align-self: center;
 }
 
 .filterContainer > div {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 20%;
+    flex-direction: column;
+    justify-content: space-between;
     color: #2A63A9;
 }
 
 #tableTitle{
     background-color: #2A63A9;
     text-transform: uppercase;
+}
+
+.filterName {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem;
+    background-color: #2A63A9;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.filterName > * {
+    font-size: 1.2rem;
+}
+
+.filterContainer > div > strong {
+    text-align: left;
 }
