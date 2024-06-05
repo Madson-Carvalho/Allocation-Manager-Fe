@@ -1,6 +1,6 @@
 import './Home.css';
-import ReactTable from "../../components/ReactTable/ReactTable";
 import BasePage from "../../components/basePage/BasePage";
+import BarChart from "../../components/Grafico/BarChart";
 
 const Home = () => {
     const projects = [
@@ -69,9 +69,12 @@ const Home = () => {
         }
     ];
 
+    const datasets = [12, 19, 3, 5, 2, 3];
+    const title = "Monthly Sales Report";
+
     return (
         <BasePage url='/create-project'>
-            <ReactTable data={projects} columns={columns} title="Projetos"/>
+            <BarChart datasets={datasets} title={title}/>
         </BasePage>
     )
 }
