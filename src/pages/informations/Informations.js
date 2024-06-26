@@ -5,7 +5,7 @@ import GanttCharts from '../../components/ganttCharts/GanttCharts';
 
 const Informations = () => {
     return (
-        <BasePage url='/gantt-charts' title={'hello'}>
+        <BasePage title={'Projeto Alpha'}>
             <GanttCharts/>
         </BasePage>
     )
