@@ -9,8 +9,10 @@ const PersonRoutes = () => {
         <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/create-project' element={<RegisterProject/>}/>
+            <Route path='/edit-project/:id' element={<RegisterProject/>}/>
             <Route path='/employees' element={<ListEmployees/>}/>
             <Route path='/create-employee' element={<RegisterEmployees/>}/>
+            <Route path='/edit-employee/:id' element={<RegisterEmployees/>}/>
         </Routes>
     )
 }
