@@ -28,11 +28,6 @@ const ListEmployees = () => {
             enableColumFilter: true
         },
         {
-            Header: 'Salário/H',
-            accessor: 'wage',
-            enableColumFilter: true
-        },
-        {
             Header: 'Formação',
             accessor: 'qualification',
             enableColumFilter: true
