@@ -3,9 +3,15 @@ import BasePage from "../../components/basePage/BasePage";
 import {useEffect, useState} from "react";
 import httpGet from "../../utils/httpRequest/httpGet";
 import {ToastContainer} from "react-toastify";
+import {useNavigate} from "react-router-dom";
+import httpRemove from "../../utils/httpRequest/httpRemove";
+import DeleteModal from "../../components/deleteModal/DeleteModal";
 
 const ListEmployees = () => {
     const [employees, setEmployees] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [rowToDelete, setRowToDelete] = useState(null);
+    const navigate = useNavigate();
 
     const columns = [
         {
@@ -43,9 +49,33 @@ const ListEmployees = () => {
         httpGet('employees/find-all', setEmployees);
     }, [])
 
+    const removeEntity = (id) => {
+        httpRemove('employees/delete-employee', id);
+        setEmployees(prevEmployees => prevEmployees.filter(employee => employee.employeeId !== id));
+    }
+
+    const handleDelete = (row) => {
+        setRowToDelete(row);
+        setIsModalOpen(true);
+    };
+
+    const confirmDelete = () => {
+        removeEntity(rowToDelete.employeeId)
+        setIsModalOpen(false);
+        setRowToDelete(null);
+    };
+
+    const handleEdit = (row) => {
+        navigate(`/edit-employee/${row?.employeeId}`);
+    };
+
     return (
         <BasePage title='Colaboradores' url='/create-employee'>
-            <ReactTable columns={columns} data={employees} title='Colaboradores'/>
+            <ReactTable columns={columns} data={employees} onDelete={handleDelete} onEdit={handleEdit}
+                        title='Colaboradores'/>
+            <DeleteModal isOpen={isModalOpen}
+                         onClose={() => setIsModalOpen(false)}
+                         onConfirm={confirmDelete}/>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
