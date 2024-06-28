@@ -6,6 +6,7 @@ import {useState} from "react";
 import httpPost from "../../utils/httpRequest/httpPost";
 import {useNavigate} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterEmployees = () => {
     const [employeeData, setEmployeeData] = useState({
@@ -40,7 +41,7 @@ const RegisterEmployees = () => {
                              onChange={handleChange}/>
                 <CustomInput id='email' name='email' type='email' label='E-mail' placeholder=' ' required={true}
                              onChange={handleChange}/>
-                <CustomInput id='workHours' name='workHours' type='number' label='Horas de trabalho' placeholder=' '
+                <CustomInput id='workeHours' name='workeHours' type='number' label='Horas de trabalho' placeholder=' '
                              required={true} onChange={handleChange}/>
                 <CustomInput id='jobRole' name='jobRole' type='text' label='Cargo' placeholder=' ' required={true}
                              onChange={handleChange}/>

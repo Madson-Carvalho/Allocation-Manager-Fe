@@ -13,7 +13,7 @@ const httpPost = (path, dataToSave) => {
         .then(response => {
             toast.success(`Dado criado com sucesso!`);
         })
-        .catch(e => toast.error(`Erro ao salvar dados`, e))
+        .catch(e => toast.error(`Erro ao salvar dados ${e}`))
 }
 
 export default httpPost;
