@@ -8,11 +8,13 @@ import httpGet from "../../utils/httpRequest/httpGet";
 import formatDate from "../../utils/formatDate/formatDate";
 import DeleteModal from "../../components/deleteModal/DeleteModal";
 import httpRemove from "../../utils/httpRequest/httpRemove";
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [rowToDelete, setRowToDelete] = useState(null);
+    const navigate = useNavigate();
 
     const columns = [
         {
@@ -70,6 +72,7 @@ const Home = () => {
 
     const removeEntity = (id) => {
         httpRemove('projects/delete-project', id);
+        setProjects(prevProjects => prevProjects.filter(project => project.projectId !== id));
     }
 
     const handleDelete = (row) => {
@@ -78,14 +81,18 @@ const Home = () => {
     };
 
     const confirmDelete = () => {
-        removeEntity(rowToDelete.id)
+        removeEntity(rowToDelete.projectId)
         setIsModalOpen(false);
         setRowToDelete(null);
     };
 
+    const handleEdit = (row) => {
+        navigate(`/edit-project/${row?.projectId}`);
+    };
+
     return (
         <BasePage url='/create-project'>
-            <ReactTable data={projects} columns={columns} onDelete={handleDelete} title="Projetos"/>
+            <ReactTable data={projects} columns={columns} onDelete={handleDelete} onEdit={handleEdit} title="Projetos"/>
             <DeleteModal isOpen={isModalOpen}
                          onClose={() => setIsModalOpen(false)}
                          onConfirm={confirmDelete}/>
