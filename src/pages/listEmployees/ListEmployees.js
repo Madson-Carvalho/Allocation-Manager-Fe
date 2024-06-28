@@ -1,34 +1,16 @@
 import ReactTable from "../../components/ReactTable/ReactTable";
 import BasePage from "../../components/basePage/BasePage";
+import {useEffect, useState} from "react";
+import httpGet from "../../utils/httpRequest/httpGet";
+import {ToastContainer} from "react-toastify";
 
 const ListEmployees = () => {
-    const employees = [
-        {
-            nome: 'João Silva',
-            email: 'joao.silva@example.com',
-            horasTrabalho: 40,
-            cargo: 'Desenvolvedor',
-            salarioHora: 50,
-            formacao: 'Engenharia da Computação',
-            especializacoes: 'React, Node.js',
-            senioridade: 'Pleno'
-        },
-        {
-            nome: 'Maria Oliveira',
-            email: 'maria.oliveira@example.com',
-            horasTrabalho: 35,
-            cargo: 'Analista de Sistemas',
-            salarioHora: 45,
-            formacao: 'Ciência da Computação',
-            especializacoes: 'SQL, Python',
-            senioridade: 'Sênior'
-        }
-    ];
+    const [employees, setEmployees] = useState([]);
 
     const columns = [
         {
             Header: 'Nome',
-            accessor: 'nome',
+            accessor: 'name',
             enableColumFilter: true
         },
         {
@@ -37,39 +19,50 @@ const ListEmployees = () => {
         },
         {
             Header: 'Horas de Trabalho',
-            accessor: 'horasTrabalho',
+            accessor: 'workeHours',
             enableColumFilter: true
         },
         {
             Header: 'Cargo',
-            accessor: 'cargo',
+            accessor: 'jobRole',
             enableColumFilter: true
         },
         {
             Header: 'Salário/H',
-            accessor: 'salarioHora',
+            accessor: 'wage',
             enableColumFilter: true
         },
         {
             Header: 'Formação',
-            accessor: 'formacao',
+            accessor: 'qualification',
             enableColumFilter: true
         },
         {
             Header: 'Especializações',
-            accessor: 'especializacoes',
-            enableColumFilter: true
-        },
-        {
-            Header: 'Senioridade',
-            accessor: 'senioridade',
+            accessor: 'specializations',
             enableColumFilter: true
         }
     ];
 
+    useEffect(() => {
+        httpGet('employees/find-all', setEmployees);
+    }, [])
+
     return (
         <BasePage title='Colaboradores' url='/create-employee'>
             <ReactTable columns={columns} data={employees} title='Colaboradores'/>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </BasePage>
     )
 }
