@@ -1,7 +1,5 @@
 .modal {
-    display: none;
     position: fixed;
-    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
@@ -20,8 +18,7 @@
     background-color: #fefefe;
     border-radius: 8px;
     padding: 2rem;
-    width: 50%;
-    max-width: 500px;
+    max-width: 25rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     position: relative;
@@ -30,9 +27,9 @@
 .close {
     color: #aaa;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
 }
