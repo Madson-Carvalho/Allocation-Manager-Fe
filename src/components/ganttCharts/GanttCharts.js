@@ -13,6 +13,6 @@ export default function GanttCharts({ id, columns, rows}) {
     };
 
     return (
-        <Chart chartType="Gantt" data={data} options={options} rootProps={{ 'data-testid': '1' }}/>
+        <Chart chartType="Gantt" data={data} options={options}/>
     );
 }
