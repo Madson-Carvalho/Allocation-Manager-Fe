@@ -2,8 +2,10 @@ import './ReactTable.css';
 import React from "react";
 import {useTable, useFilters, usePagination} from "react-table";
 import {TextFilter} from "./TextFilter";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPencil, faTrash} from "@fortawesome/free-solid-svg-icons";
 
-export default function ReactTable({columns, data, title}) {
+export default function ReactTable({columns, data, title, onEdit, onDelete}) {
     const {
         headerGroups,
         page,
@@ -42,7 +44,7 @@ export default function ReactTable({columns, data, title}) {
                 <thead>
                 {headerGroups[0].headers.length > 0 ?
                     <tr>
-                        <th colSpan={headerGroups[0].headers.length} id="tableTitle">
+                        <th colSpan={headerGroups[0].headers.length + 1} id="tableTitle">
                             {title}
                         </th>
                     </tr> : null}
@@ -53,6 +55,7 @@ export default function ReactTable({columns, data, title}) {
                                 {column.render("Header").toUpperCase()}
                             </th>
                         ))}
+                        <th></th>
                     </tr>
                 ))}
                 </thead>
@@ -64,6 +67,20 @@ export default function ReactTable({columns, data, title}) {
                             {row.cells.map(cell => {
                                 return <td key={cell.id}>{cell.render("Cell")}</td>;
                             })}
+                            <td>
+                                <button
+                                    className='customButton'
+                                    onClick={() => onEdit(row.original)}
+                                >
+                                    <FontAwesomeIcon icon={faPencil} inverse/>
+                                </button>
+                                <button
+                                    className='customButton'
+                                    onClick={() => onDelete(row.original)}
+                                >
+                                    <FontAwesomeIcon icon={faTrash} inverse/>
+                                </button>
+                            </td>
                         </tr>
                     );
                 })}

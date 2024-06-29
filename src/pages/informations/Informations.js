@@ -41,14 +41,15 @@ const Informations = () => {
     }, [project]);
 
     const handleProjetoChange = (event) => {
-        const projetoSelecionado = data.find(p => p.id === parseInt(event.target.value));
+        console.log(event.target.value)
+        const projetoSelecionado = data.filter(p => p?.projectId === event.target.value);
         setProject(projetoSelecionado);
     };
 
     return (
         <>
             <BasePage title={project && project?.name}>
-                {data && <CustomSelect label="" options={data} required={true} value={project?.id} onChange={handleProjetoChange} name="teste"/>}
+                {data && <CustomSelect id={project?.id} label="Projeto" options={data} value={project?.id} onChange={handleProjetoChange} required={true}/>}
                 {rows && <GanttCharts columns={columns} rows={rows}/>}
             </BasePage>
         </>
