@@ -9,6 +9,9 @@ import formatDate from "../../utils/formatDate/formatDate";
 import DeleteModal from "../../components/deleteModal/DeleteModal";
 import httpRemove from "../../utils/httpRequest/httpRemove";
 import {useNavigate} from "react-router-dom";
+import Modal from "../../components/modal/Modal";
+import Form from "../../components/form/Form";
+import CustomMultiSelect from "../../components/customMultiSelect/CustomMultiSelect";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
@@ -93,9 +96,17 @@ const Home = () => {
     return (
         <BasePage url='/create-project'>
             <ReactTable data={projects} columns={columns} onDelete={handleDelete} onEdit={handleEdit} title="Projetos"/>
-            <DeleteModal isOpen={isModalOpen}
-                         onClose={() => setIsModalOpen(false)}
-                         onConfirm={confirmDelete}/>
+            {/*<DeleteModal isOpen={isModalOpen}*/}
+            {/*             onClose={() => setIsModalOpen(false)}*/}
+            {/*             onConfirm={confirmDelete}/>*/}
+            <Modal title='Inserir colaborador'
+                   isOpen={isModalOpen}
+                   onClose={() => setIsModalOpen(false)}
+                   onConfirm={confirmDelete}>
+                <Form>
+                    <CustomMultiSelect options={[]}/>
+                </Form>
+            </Modal>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
