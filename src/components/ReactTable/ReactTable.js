@@ -65,6 +65,9 @@ export default function ReactTable({columns, data, title, onEdit, onDelete}) {
                     return (
                         <tr key={row.id}>
                             {row.cells.map(cell => {
+                                if (Array.isArray(cell.value)) {
+                                    return <td key={cell.value.id}>{cell.value.map(x => x.name).join(', ')}</td>;
+                                }
                                 return <td key={cell.id}>{cell.render("Cell")}</td>;
                             })}
                             <td>
