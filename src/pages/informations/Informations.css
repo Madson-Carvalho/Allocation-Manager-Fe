@@ -1,0 +1,43 @@
+.gantt-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+
+.new-employee {
+    border: solid 1px #0b3b5b;
+    background-color: #2A63A9;
+    cursor: pointer;
+    width: 3rem;
+    border-radius: 5px;
+}
+
+.new-employee > svg {
+    height: 1.3rem;
+    color: #ffffff;
+}
+
+.custom-multi-select-container {
+    border: 2px solid #4CAF50; /* Green border */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.custom-multi-select-dropdown {
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #ccc; /* Light grey border */
+}
+
+.custom-multi-select-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.custom-multi-select-item:hover {
+    background-color: #ddd; /* Darker grey background on hover */
+}
+
+.custom-multi-select-item-selected {
+    background-color: #4CAF50; /* Green background for selected items */
+    color: white;
+}
