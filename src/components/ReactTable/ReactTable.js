@@ -27,19 +27,8 @@ export default function ReactTable({columns, data, title, onEdit, onDelete}) {
     );
 
     return (
+        <>
         <div className="tableListSchema">
-            {headerGroups.map(headerGroup => (
-                headerGroup.headers.filter(x => x.enableColumFilter)).length > 0 ?
-                <div className="filterContainer" key={headerGroup.id}>
-                    {headerGroup.headers.filter(x => x.enableColumFilter).map(column => (
-                        <div key={column.id}>
-                            {column.enableColumFilter ? <b>{column.render("Header").toUpperCase()}</b> : null}
-                            {column.enableColumFilter ? <TextFilter column={column}/> : null}
-                        </div>
-                    ))}
-                </div>
-                : null
-            )}
             <table className="customTable">
                 <thead>
                 {headerGroups[0].headers.length > 0 ?
@@ -48,6 +37,10 @@ export default function ReactTable({columns, data, title, onEdit, onDelete}) {
                             {title}
                         </th>
                     </tr> : null}
+                    <tr>
+                                <th colSpan={headerGroups[0].headers.length + 1} style={{backgroundColor: "#FF0000"}}>asdasd
+                        </th>
+                    </tr>
                 {headerGroups.map(headerGroup => (
                     <tr key={headerGroup.id}>
                         {headerGroup.headers.map(column => (
@@ -89,7 +82,8 @@ export default function ReactTable({columns, data, title, onEdit, onDelete}) {
                 })}
                 </tbody>
             </table>
-            <div className="tableFooter">
+        </div>
+        <div className="tableFooter">
                 <div>
                     Página{' '}
                     <em>
@@ -115,6 +109,6 @@ export default function ReactTable({columns, data, title, onEdit, onDelete}) {
                     ))}
                 </select>
             </div>
-        </div>
+        </>
     );
 }

@@ -1,12 +1,13 @@
 .customTable {
     width: 98%;
     border-collapse: collapse;
+    margin-bottom: 1rem;
 }
 
-.customTable th, .customTable td {
+/* .customTable th, .customTable td {
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0.5rem;
-}
+} */
 
 .customTable th {
     background-color: #2A63A9;
@@ -29,6 +30,7 @@
     align-items: center;
     margin: 0.625rem;
     border-radius: 10px;
+    box-shadow: 0 2px #999;
 }
 
 .filterContainer {
@@ -63,9 +65,6 @@
     justify-content: space-between;
     width: 98% ;
     padding: 1rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .filterInput {
