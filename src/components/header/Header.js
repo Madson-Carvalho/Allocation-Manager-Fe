@@ -12,8 +12,8 @@ const Header = () => {
             <Link to={'/'}><img src={logo}/></Link>
             <nav>
                 <Link to={'/'} title="Home" className={getPath('/', currentPath) ? "selected" : ""}>home</Link>
-                <Link to='/employees' title='Colaboradores'>colaboradores</Link>
-                <Link to={'/informations'} title="Gantt">gantt</Link>
+                <Link to='/employees' title="Colaboradores" className={getPath('/employees', currentPath) ? "selected" : ""}>colaboradores</Link>
+                <Link to={'/informations'} title="Gantt" className={getPath('/informations', currentPath) ? "selected" : ""}>gantt</Link>
             </nav>
         </header>
     )
