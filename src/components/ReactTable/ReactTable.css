@@ -1,5 +1,5 @@
 .customTable {
-    width: 98%;
+    width: 100%;
     border-collapse: collapse;
     margin-bottom: 1rem;
 }
@@ -29,8 +29,8 @@
     justify-content: center;
     align-items: center;
     margin: 0.625rem;
-    border-radius: 10px;
-    box-shadow: 0 2px #999;
+    background-color: #FFF;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .filterContainer {
@@ -89,4 +89,16 @@
 #tableTitle{
     background-color: #2A63A9;
     text-transform: uppercase;
+    margin: 10rem;
+    font-size: 30px;
+}
+
+.customTable .tableTitle2 tr:nth-child(even) {
+    background-color: #d60c0c;
+    color: #D8D6D6;
+    margin-bottom: 1px;
+}
+
+.customTable td {
+    height: 3rem;
 }
