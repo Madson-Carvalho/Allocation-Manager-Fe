@@ -1,26 +1,45 @@
+.customTable * {
+    font-weight: 900;
+}
+
 .customTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-weight: bold; 
+    color: #000000;
 }
-
-/* .customTable th, .customTable td {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
-} */
 
 .customTable th {
-    background-color: #2A63A9;
-    text-align: center;
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center; 
+    vertical-align: middle;
+    height: 3rem;
 }
 
-.customTable tr:nth-child(even) {
-    background-color: #d5ecfa;
+.customTable tr {
+    background-color: #f2f2f2;
 }
 
 .customTable tr:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #e0f7fa; 
+    transition: background-color 0.3s ease;
+}
+
+#tableTitle {
+    background-color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 4rem;
+    font-size: 2rem;
 }
 
 .tableListSchema {
@@ -29,22 +48,14 @@
     justify-content: center;
     align-items: center;
     margin: 0.625rem;
-    background-color: #FFF;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
-.filterContainer {
+.tableFooter {
     display: flex;
-    justify-content: flex-end;
-    text-align: center;
-    font-size: 1rem;
-    padding: 1rem 0.5rem;
-    min-width: 98%;
-    max-width: 98%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-    gap: 0.5rem 0;
-
+    justify-content: space-between;
+    width: 98%;
+    padding: 1rem;
 }
 
 .customButton {
@@ -60,11 +71,17 @@
     box-shadow: 0 2px #999;
 }
 
-.tableFooter {
+.filterContainer {
     display: flex;
-    justify-content: space-between;
-    width: 98% ;
-    padding: 1rem;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: 1rem;
+    padding: 1rem 0.5rem;
+    min-width: 98%;
+    max-width: 98%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
 }
 
 .filterInput {
@@ -86,19 +103,6 @@
     color: #2A63A9;
 }
 
-#tableTitle{
-    background-color: #2A63A9;
-    text-transform: uppercase;
-    margin: 10rem;
-    font-size: 30px;
-}
-
-.customTable .tableTitle2 tr:nth-child(even) {
-    background-color: #d60c0c;
-    color: #D8D6D6;
-    margin-bottom: 1px;
-}
-
-.customTable td {
-    height: 3rem;
+#looseThread{
+    height: 0.5rem;
 }

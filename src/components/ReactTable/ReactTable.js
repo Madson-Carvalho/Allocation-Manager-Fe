@@ -1,7 +1,6 @@
 import './ReactTable.css';
 import React from "react";
 import { useTable, useFilters, usePagination } from "react-table";
-import { TextFilter } from "./TextFilter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -37,11 +36,11 @@ export default function ReactTable({ columns, data, title, onEdit, onDelete }) {
                                     {title}
                                 </th>
                             </tr> : null}
-                            <tr>
-                                <th colSpan={headerGroups[0].headers.length + 1} style={{backgroundColor: "#D8D6D6", fontSize: "5px"}}>
+                        <tr>
+                            <th id="looseThread" colSpan={headerGroups[0].headers.length + 1} style={{ backgroundColor: "#D8D6D6", fontSize: "5px" }}>
                                 &nbsp;
-                                </th>
-                            </tr>
+                            </th>
+                        </tr>
                         {headerGroups.map(headerGroup => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map(column => (
@@ -61,6 +60,8 @@ export default function ReactTable({ columns, data, title, onEdit, onDelete }) {
                                     {row.cells.map(cell => {
                                         if (Array.isArray(cell.value)) {
                                             return <td key={cell.value.id}>{cell.value.map(x => x.name).join(', ')}</td>;
+                                        } else if (cell.value && typeof cell.value === 'object') {
+                                            return <td key={cell.id}>{cell.value.name || ''}</td>;
                                         }
                                         return <td key={cell.id}>{cell.render("Cell")}</td>;
                                     })}
