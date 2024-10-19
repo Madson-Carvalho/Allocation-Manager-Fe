@@ -9,6 +9,8 @@ import formatDate from "../../utils/formatDate/formatDate";
 import DeleteModal from "../../components/deleteModal/DeleteModal";
 import httpRemove from "../../utils/httpRequest/httpRemove";
 import {useNavigate} from "react-router-dom";
+import {Box, Modal, Typography} from "@mui/material";
+import style from "../../utils/modalStyle";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
@@ -93,9 +95,24 @@ const Home = () => {
     return (
         <BasePage url='/create-project'>
             <ReactTable data={projects} columns={columns} onDelete={handleDelete} onEdit={handleEdit} title="Projetos"/>
-            <DeleteModal isOpen={isModalOpen}
-                         onClose={() => setIsModalOpen(false)}
-                         onConfirm={confirmDelete}/>
+            {/*<DeleteModal isOpen={isModalOpen}*/}
+            {/*             onClose={() => setIsModalOpen(false)}*/}
+            {/*             onConfirm={confirmDelete}/>*/}
+            <Modal
+                open={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Text in a modal
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                    </Typography>
+                </Box>
+            </Modal>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
