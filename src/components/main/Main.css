@@ -5,22 +5,28 @@ main {
 .headerPage {
     display: flex;
     flex-direction: column;
-    padding: 0 1.7rem;
+    padding: 0 1rem;
 }
 
 .headerPage > h2 {
-    padding-top: 2rem;
-    color: #2A63A9;
-    text-transform: uppercase;
+    margin: 3rem;
 }
 
 .headerPage > a {
     align-self: flex-end;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    width: 5rem;
-    padding: 0.5rem 0;
-    text-decoration: none;
-    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 2.5rem;
     background-color: #2A63A9;
-    color: #ffffff;
+    text-decoration: none;
+    padding-top: -2rem;
+    text-decoration: none;
+    border-radius: 1.5rem;   
+}
+
+.headerPage .MuiSvgIcon-root {
+    color: white;
+    font-size: 3rem;
 }
