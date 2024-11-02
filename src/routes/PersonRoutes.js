@@ -4,6 +4,7 @@ import ListEmployees from "../pages/listEmployees/ListEmployees";
 import RegisterEmployees from "../pages/registerEmployees/RegisterEmployees";
 import Informations from "../pages/informations/Informations";
 import RegisterProject from "../pages/registerProject/RegisterProject";
+import CalendarTimeline from "../pages/calendarTimeline/CalendarTimeline";
 
 const PersonRoutes = () => {
     return (
@@ -15,6 +16,9 @@ const PersonRoutes = () => {
             <Route path='/create-employee' element={<RegisterEmployees/>}/>
             <Route path='/edit-employee/:id' element={<RegisterEmployees/>}/>
             <Route path='/informations' element={<Informations/>}/>
+
+            <Route path='/react-calendar-timeline' element={<CalendarTimeline/>}/>
+
         </Routes>
     )
 }
