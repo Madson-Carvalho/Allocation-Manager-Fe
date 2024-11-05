@@ -8,10 +8,12 @@ const getUrl = () => {
 const ProjectSelector = ({
   defaultValue,
   setValue,
+    title= "Projeto"
 }) => {
 
   return (
     <BaseSelector
+        title={title}
       label="name"
       getUrl={getUrl()}
       setValue={setValue}

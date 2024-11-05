@@ -93,8 +93,14 @@ const CalendarTimeline = () => {
 
     return (
         <BasePage title='Calendar Timeline'>
-            <EmployeeSelector/>
-            <ProjectSelector/>
+            <div style={{display: 'flex'}}>
+                <div style={{flex: 1}}>
+                    <EmployeeSelector/>
+                </div>
+                <div style={{flex: 1}}>
+                    <ProjectSelector/>
+                </div>
+            </div>
             <Timeline
                 className="custom-timeline"
                 groups={groups}
@@ -103,7 +109,7 @@ const CalendarTimeline = () => {
                 onItemMove={(itemId, newStart, newEnd) => handleItemMove(itemId, newStart, newEnd)}
                 defaultTimeStart={moment(minZoomDate)}
                 defaultTimeEnd={moment(maxZoomDate)}
-                lineHeight={100}
+                lineHeight={150}
                 itemHeight={100}
                 dragSnap={DAY_IN_MILISECONDS}
                 canMove={true}
