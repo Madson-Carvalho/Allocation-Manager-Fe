@@ -1,0 +1,12 @@
+.base-selector {
+
+    margin: 1rem;
+}
+
+.select-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
