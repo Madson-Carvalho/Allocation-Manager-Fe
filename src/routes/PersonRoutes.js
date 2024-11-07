@@ -16,9 +16,7 @@ const PersonRoutes = () => {
             <Route path='/create-employee' element={<RegisterEmployees/>}/>
             <Route path='/edit-employee/:id' element={<RegisterEmployees/>}/>
             <Route path='/informations' element={<Informations/>}/>
-
             <Route path='/react-calendar-timeline' element={<CalendarTimeline/>}/>
-
         </Routes>
     )
 }

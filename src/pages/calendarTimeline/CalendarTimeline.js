@@ -10,11 +10,22 @@ import EmployeeSelector from "../registerEmployees/EmployeeSelector";
 import ProjectSelector from "../registerProject/ProjectSelector";
 
 const CalendarTimeline = () => {
-    const DAY_IN_MILISECONDS = 86400000;
+
+    const DAY = 'day';
+    const WEEK = 'week';
+    const MONTH = 'month';
+    const YEAR = 'year';
 
     const [allocations, setAllocations] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [employee, setEmployee] = useState(null);
+    const [project, setProject] = useState(null);
+    const [filters, setFilters] = useState({employeeId: '', projectId: '', startDate: '', endDate: ''});
     const [cardPosition, setCardPosition] = useState({top: 0, left: 0});
+
+    const [startDate, setStartDate] = useState(moment().startOf(MONTH));
+    const [endDate, setEndDate] = useState(moment().endOf(MONTH));
+    const [scale, setScale] = useState(YEAR);
 
     const groups = allocations?.map(allocation => ({
         id: allocation.project.projectId,
@@ -32,32 +43,13 @@ const CalendarTimeline = () => {
         canChangeGroup: true,
     })) ?? [];
 
-    const currentYear = moment().year();
-
-    const minZoomDate = items.length > 0
-        ? moment.min(items.map(item => moment(item.start_time)))
-        : moment(`${currentYear}-01-01`);
-
-    const maxZoomDate = items.length > 0
-        ? moment.max(items.map(item => moment(item.end_time)))
-        : moment(`${currentYear}-12-31`);
-
-    const [filters, setFilters] = useState({
-        employeeId: '',
-        projectId: '',
-        startDate: '',
-        endDate: ''
-    });
-
-    const mountFilter = () => {
-        const params = new URLSearchParams();
-        Object.entries(filters).forEach(([key, value]) => {
-            if (value) {
-                params.append(key, value);
-            }
-        });
-        return params;
-    };
+    useEffect(() => {
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            employeeId: employee?.employeeId,
+            projectId: project?.projectId,
+        }));
+    }, [employee, project]);
 
     useEffect(() => {
         const params = mountFilter();
@@ -72,6 +64,16 @@ const CalendarTimeline = () => {
         window.addEventListener("click", handleMouseClick);
         return () => window.removeEventListener("click", handleMouseClick);
     }, []);
+
+    const mountFilter = () => {
+        const params = new URLSearchParams();
+        Object.entries(filters).forEach(([key, value]) => {
+            if (value) {
+                params.append(key, value);
+            }
+        });
+        return params;
+    };
 
     const handleItemClick = (itemId) => {
         const selectedAllocation = allocations.find(allocation => allocation.id === itemId);
@@ -91,32 +93,73 @@ const CalendarTimeline = () => {
         setAllocations(newAllocations);
     };
 
+    const handleScaleChange = (newScale) => {
+        setScale(newScale);
+    };
+
+    const handleNext = () => {
+        setStartDate(prev => moment(prev).add(1, scale));
+        setEndDate(prev => moment(prev).add(1, scale));
+    };
+
+    const handlePrevious = () => {
+        setStartDate(prev => moment(prev).subtract(1, scale));
+        setEndDate(prev => moment(prev).subtract(1, scale));
+    };
+
     return (
         <BasePage title='Calendar Timeline'>
-            <div style={{display: 'flex'}}>
-                <div style={{flex: 1}}>
-                    <EmployeeSelector/>
+            <div className="selector-container">
+                <div className="selector">
+                    <EmployeeSelector setValue={setEmployee}/>
                 </div>
-                <div style={{flex: 1}}>
-                    <ProjectSelector/>
+                <div className="selector">
+                    <ProjectSelector setValue={setProject}/>
                 </div>
             </div>
-            <Timeline
-                className="custom-timeline"
-                groups={groups}
-                items={items}
-                onItemClick={(itemId) => handleItemClick(itemId)}
-                onItemMove={(itemId, newStart, newEnd) => handleItemMove(itemId, newStart, newEnd)}
-                defaultTimeStart={moment(minZoomDate)}
-                defaultTimeEnd={moment(maxZoomDate)}
-                lineHeight={150}
-                itemHeight={100}
-                dragSnap={DAY_IN_MILISECONDS}
-                canMove={true}
-                canResize={true}
-                canChangeGroup={true}
-                showCursorTime={true}
-            />
+            <div className="button-select-scale-timeline">
+                <button
+                    onClick={() => handleScaleChange(DAY)}
+                    className={scale === "day" ? "selected" : ""}>Dia
+                </button>
+                <button
+                    onClick={() => handleScaleChange(WEEK)}
+                    className={scale === WEEK ? "selected" : ""}>Semana
+                </button>
+                <button
+                    onClick={() => handleScaleChange(MONTH)}
+                    className={scale === MONTH ? "selected" : ""}>Mês
+                </button>
+                <button
+                    onClick={() => handleScaleChange(YEAR)}
+                    className={scale === YEAR ? "selected" : ""}>Ano
+                </button>
+            </div>
+            <div>
+                <button onClick={handlePrevious}>Anterior</button>
+                <button onClick={handleNext}>Próximo</button>
+            </div>
+            {items && items.length > 0 ? (
+                <Timeline
+                    key={`${startDate}-${endDate}`}
+                    className="custom-timeline"
+                    groups={groups}
+                    items={items}
+                    onItemClick={(itemId) => handleItemClick(itemId)}
+                    onItemMove={(itemId, newStart, newEnd) => handleItemMove(itemId, newStart, newEnd)} //TODO VERIFICAR COMO IMPLEMENTAR CORRETAMENTE
+                    defaultTimeStart={startDate}
+                    defaultTimeEnd={endDate}
+                    lineHeight={150}
+                    itemHeight={100}
+                    canMove={false}
+                    canResize={false}
+                    canChangeGroup={true}
+                />
+            ) : (
+                <div>
+                    Não há alocações para exibir.
+                </div>
+            )}
             {selectedItem && (
                 <DetailsCard
                     selectedItem={selectedItem}
@@ -126,6 +169,7 @@ const CalendarTimeline = () => {
             )}
         </BasePage>
     );
+
 };
 
 export default CalendarTimeline;

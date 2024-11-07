@@ -13,13 +13,12 @@ const EmployeeSelector = ({
 
   return (
     <BaseSelector
-        title={title}
+      title={title}
       label="name"
       getUrl={getUrl()}
       setValue={setValue}
       value={defaultValue}
       rowId="employeeId"
-      isMulti={true}
     />
   );
 }

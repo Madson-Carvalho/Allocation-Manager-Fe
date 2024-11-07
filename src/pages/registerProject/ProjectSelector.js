@@ -19,7 +19,6 @@ const ProjectSelector = ({
       setValue={setValue}
       value={defaultValue}
       rowId="projectId"
-      isMulti={true}
     />
   );
 }
