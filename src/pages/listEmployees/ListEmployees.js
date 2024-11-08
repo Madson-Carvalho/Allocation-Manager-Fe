@@ -70,7 +70,7 @@ const ListEmployees = () => {
     };
 
     return (
-        <BasePage title='Colaboradores' url='/create-employee'>
+        <BasePage url='/create-employee'>
             <ReactTable columns={columns} data={employees} onDelete={handleDelete} onEdit={handleEdit}
                         title='Colaboradores'/>
             <DeleteModal isOpen={isModalOpen}

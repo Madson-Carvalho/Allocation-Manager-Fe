@@ -58,6 +58,32 @@
     padding: 1rem;
 }
 
+.tableFooter >select {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    background-color: #2A63A9;
+    border: none;
+    border-radius: 20px;
+    width: 7rem;
+    height: 1.9rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.actionButton {
+    margin: 0.3125rem;
+    display: inline-block;
+    padding: 0.3125rem;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #2A63A9;
+    border: none;
+    width: 2rem;
+    border-radius: 10px;
+}
+
 .customButton {
     margin: 0.3125rem;
     display: inline-block;
@@ -67,42 +93,101 @@
     color: #fff;
     background-color: #2A63A9;
     border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px #999;
-}
-
-.filterContainer {
-    display: flex;
-    justify-content: flex-end;
-    text-align: center;
-    font-size: 1rem;
-    padding: 1rem 0.5rem;
-    min-width: 98%;
-    max-width: 98%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-    gap: 0.5rem 0;
-}
-
-.filterInput {
-    padding: 0.5rem;
-    font-size: 1.2rem;
-    border-radius: 8px;
-    border: solid 0.5px #d6d6d6;
-    outline: none;
-    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    width: 70%;
-    align-self: center;
-}
-
-.filterContainer > div {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 20%;
-    color: #2A63A9;
+    width: 5rem;
+    border-radius: 20px;
 }
 
 #looseThread{
     height: 0.5rem;
 }
+
+.filters-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.filter-inputs {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    border-radius: 20px;
+    gap: 1rem;
+}
+
+.clear-button {
+    padding: 7px;
+    background-color: #2A63A9;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.IconButton:hover, .clear-button:hover {
+    background-color: #4c7db9;
+}
+
+.clear-button {
+    background-color: #2A63A9;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 225px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    z-index: 1000;
+    margin-left: 1rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.buttonIcon {
+    width: 4rem;
+    height: 2.5rem;
+    background-color: #2A63A9;
+    text-decoration: none;
+    border-radius: 1.5rem;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    margin-left: 1rem;
+}
+
+.filter-icon {
+    color: white;
+}
+
+.filter-inputs input[type="text"] {
+    font-size: 1rem; 
+    height: 2rem;
+    border-radius: 5rem; 
+    background-color: #ffffff; 
+    border: 1px solid #ddd; 
+    width: 300px;
+    padding: 0.5rem;
+}
+
+.filter-inputs input[type="text"]:focus {
+    outline: none; 
+    border-color: #2A63A9;
+    box-shadow: 0 0 5px rgba(42, 99, 169, 0.4);
+}
+

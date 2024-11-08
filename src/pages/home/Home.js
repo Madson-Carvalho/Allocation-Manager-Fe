@@ -1,4 +1,3 @@
-import './Home.css';
 import ReactTable from "../../components/ReactTable/ReactTable";
 import BasePage from "../../components/basePage/BasePage";
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,23 +29,13 @@ const Home = () => {
         {
             Header: 'Coordenador do Projeto',
             accessor: 'projectCoordinator',
-            // enableColumFilter: true
+            enableColumFilter: true
         },
-        // {
-        //     Header: 'Fonte Financiadora',
-        //     accessor: 'fundingSource',
-        //     enableColumFilter: true
-        // },
         {
             Header: 'Colaboradores',
             accessor: 'employees',
             enableColumFilter: true
         },
-        // {
-        //     Header: 'Valor Total do Projeto',
-        //     accessor: 'totalProjectValue',
-        //     enableColumFilter: true
-        // },
         {
             Header: 'Data de Início',
             accessor: 'initialDate',

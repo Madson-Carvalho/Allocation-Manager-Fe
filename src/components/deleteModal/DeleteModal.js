@@ -1,23 +1,20 @@
-import './DeleteModal.css'
+import './DeleteModal.css';
 
-const DeleteModal = ({isOpen, onClose, onConfirm}) => {
-    if (!isOpen) {
-        return null;
-    }
+const DeleteModal = ({ isOpen, onClose, onConfirm }) => {
+    if (!isOpen) return null;
 
     return (
-        <div className="confirm-modal-overlay">
-            <div className="confirm-modal-content">
-                <div className="confirm-modal-message">
-                    Você tem certeza que deseja excluir este item?
-                </div>
-                <div className="confirm-modal-buttons">
-                    <button onClick={onConfirm}>Confirmar</button>
-                    <button onClick={onClose}>Cancelar</button>
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <button className="close-btn" onClick={onClose}>X</button>
+                <h3>Você tem certeza que deseja excluir este item?</h3>
+                <div className="modal-actions">
+                    <button className="cancel-btn" onClick={onClose}>Cancelar</button>
+                    <button className="confirm-btn" onClick={onConfirm}>Confirmar</button>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default DeleteModal;
