@@ -138,9 +138,6 @@ export default function ReactTable({ columns, data, title, onEdit, onDelete }) {
                                 </th>
                             </tr>
                         }
-                        <tr>
-                            <th id="looseThread" colSpan={headerGroups[0]?.headers.length + 1} style={{ backgroundColor: "#D8D6D6", fontSize: "5px" }}>&nbsp;</th>
-                        </tr>
                         {headerGroups.map(headerGroup => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map(column => (

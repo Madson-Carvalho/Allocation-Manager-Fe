@@ -16,6 +16,7 @@
     background-color: #E7E6E6;
     margin-bottom: 1rem;
     border-spacing: 0 1rem;
+
     td {
         line-height: 4rem;
     }

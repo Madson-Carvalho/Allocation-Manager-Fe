@@ -9,6 +9,7 @@ main {
     flex-direction: column;
     padding: 0 1rem;
 }
+}
 
 .headerPage > h2 {
     margin: 3rem;
