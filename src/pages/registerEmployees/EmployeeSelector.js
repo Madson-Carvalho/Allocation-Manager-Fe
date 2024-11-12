@@ -8,7 +8,7 @@ const getUrl = () => {
 const EmployeeSelector = ({
   defaultValue,
   setValue,
-    title = "Colaborador"
+  title = ""
 }) => {
 
   return (

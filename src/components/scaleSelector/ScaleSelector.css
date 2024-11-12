@@ -1,0 +1,33 @@
+.button-select-scale-timeline {
+
+
+    button{
+        font-size: 20px;
+        margin: 0.3125rem;
+        display: inline-block;
+        padding: 0.3125rem;
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        background-color: gray;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px #999;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    button.selected {
+        padding: 0.4rem;
+        background-color: #0056b3;
+        font-weight: bold;
+    }
+
+    button:disabled {
+        background-color: #d6d6d6;
+        color: #888;
+        cursor: not-allowed;
+    }
+}

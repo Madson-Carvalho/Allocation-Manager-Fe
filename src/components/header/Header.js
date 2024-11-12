@@ -11,7 +11,7 @@ const Header = () => {
             <nav>
                 <Link to={'/'} title="Home"><FontAwesomeIcon icon={faHome} inverse/> home</Link>
                 <Link to='/employees' title='Colaboradores'><FontAwesomeIcon icon={faAddressCard} inverse/> colaboradores</Link>
-                <Link to={'/informations'} title="Gráfico de gantt"><FontAwesomeIcon icon={faChartGantt} inverse/> gantt</Link>
+                <Link to={'/react-calendar-timeline'} title="Gráfico de gantt"><FontAwesomeIcon icon={faChartGantt} inverse/> gantt</Link>
             </nav>
         </header>
     )

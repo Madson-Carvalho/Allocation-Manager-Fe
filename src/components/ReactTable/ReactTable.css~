@@ -1,0 +1,182 @@
+.customTable {
+    width: 100%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.customTable th {
+    background-color: #ffffff;
+    color: #000000;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    height: 3rem;
+}
+
+.customTable tr {
+    background-color: #E7E6E6;
+    margin-bottom: 1rem;
+    border-spacing: 0 1rem;
+
+    td {
+        line-height: 4rem;
+    }
+}
+
+.customTable tr:hover {
+    background-color: #aaaaaa;
+    transition: background-color 1s ease;
+}
+
+#tableTitle {
+    text-transform: uppercase;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.tableListSchema {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.625rem;
+    border-radius: 10px;
+}
+
+.tableFooter {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.tableFooter > select {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    background-color: #2A63A9;
+    border: none;
+    border-radius: 20px;
+    width: 7rem;
+    height: 1.9rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.actionButton {
+    margin: 0.3125rem;
+    display: inline-block;
+    padding: 0.3125rem;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #2A63A9;
+    border: none;
+    width: 2rem;
+    border-radius: 10px;
+}
+
+.customButton {
+    margin: 0.3125rem;
+    cursor: pointer;
+    color: #fff;
+    background-color: #2A63A9;
+    border: none;
+    width: 8rem;
+    border-radius: 20px;
+    font-weight: bold;
+    height: 1.9rem;
+}
+
+#looseThread {
+    height: 0.5rem;
+}
+
+.filters-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.filter-inputs {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    border-radius: 20px;
+    gap: 1rem;
+}
+
+.clear-button {
+    padding: 7px;
+    background-color: #2A63A9;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.IconButton:hover, .clear-button:hover {
+    background-color: #4c7db9;
+}
+
+.clear-button {
+    background-color: #2A63A9;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 225px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    z-index: 1000;
+    margin-left: 1rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.buttonIcon {
+    width: 4rem;
+    height: 2.5rem;
+    background-color: #2A63A9;
+    text-decoration: none;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    margin-left: 1rem;
+}
+
+.filter-icon {
+    color: white;
+}
+
+.filter-inputs input[type="text"] {
+    font-size: 1rem;
+    height: 2rem;
+    border-radius: 5rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    width: 300px;
+    padding: 0.5rem;
+}
+
+.filter-inputs input[type="text"]:focus {
+    outline: none;
+    border-color: #2A63A9;
+    box-shadow: 0 0 5px rgba(42, 99, 169, 0.4);
+}
+

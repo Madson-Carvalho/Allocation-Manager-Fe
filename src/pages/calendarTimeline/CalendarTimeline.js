@@ -8,13 +8,15 @@ import './CalendarTimeline.css';
 import DetailsCard from "../../components/detailsCard/DetailsCard";
 import EmployeeSelector from "../registerEmployees/EmployeeSelector";
 import ProjectSelector from "../registerProject/ProjectSelector";
+import ScaleSelector from "../../components/scaleSelector/ScaleSelector";
+import {MONTH, YEAR} from "../../components/scaleSelector/Scales";
+import {faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const CalendarTimeline = () => {
 
-    const DAY = 'day';
-    const WEEK = 'week';
-    const MONTH = 'month';
-    const YEAR = 'year';
+    const VIEW_PROJECTS = 'Visualizar por Projetos';
+    const VIEW_EMPLOYEES = 'Visualizar por Funcionarios';
 
     const [allocations, setAllocations] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -22,18 +24,36 @@ const CalendarTimeline = () => {
     const [project, setProject] = useState(null);
     const [filters, setFilters] = useState({employeeId: '', projectId: '', startDate: '', endDate: ''});
     const [cardPosition, setCardPosition] = useState({top: 0, left: 0});
+    const [isEmployeeAsGroup, setIsEmployeeAsGroup] = useState(true);
 
     const [startDate, setStartDate] = useState(moment().startOf(MONTH));
     const [endDate, setEndDate] = useState(moment().endOf(MONTH));
     const [scale, setScale] = useState(YEAR);
 
-    const groups = allocations?.map(allocation => ({
-        id: allocation.project.projectId,
-        title: allocation.project.name
+
+    const groupsAsEmployee = allocations?.map(allocation => ({
+        id: allocation.employee.employeeId,
+        title: allocation.employee.name,
     })) ?? [];
 
-    const items = allocations?.map(allocation => ({
-        id: allocation.id,
+    const itemsAsEmployee = allocations?.map(allocation => ({
+        id: allocation.project.projectId,
+        group: allocation.employee.employeeId,
+        title: allocation.project.name,
+        start_time: moment(allocation.startDate),
+        end_time: moment(allocation.endDate),
+        canMove: true,
+        canResize: true,
+        canChangeGroup: true,
+    })) ?? [];
+
+    const groupsAsProject = allocations?.map(allocation => ({
+        id: allocation.project.projectId,
+        title: allocation.project.name,
+    })) ?? [];
+
+    const itemsAsProject = allocations?.map(allocation => ({
+        id: allocation.employee.employeeId,
         group: allocation.project.projectId,
         title: allocation.employee.name,
         start_time: moment(allocation.startDate),
@@ -41,7 +61,15 @@ const CalendarTimeline = () => {
         canMove: true,
         canResize: true,
         canChangeGroup: true,
+        additionalData: {
+            jobRole: allocation.employee.jobRole,
+            qualification: allocation.employee.qualification,
+            specializations: allocation.employee.specializations
+        },
     })) ?? [];
+
+    const groups = isEmployeeAsGroup ? groupsAsEmployee : groupsAsProject;
+    const items = isEmployeeAsGroup ? itemsAsEmployee : itemsAsProject;
 
     useEffect(() => {
         setFilters(prevFilters => ({
@@ -80,84 +108,50 @@ const CalendarTimeline = () => {
         setSelectedItem(selectedAllocation);
     };
 
-    const handleItemMove = (itemId, newStart, newEnd) => {
-        const newAllocations = allocations.map(allocation =>
-            allocation.id === itemId
-                ? {
-                    ...allocation,
-                    startDate: moment(newStart).toISOString(),
-                    endDate: moment(newEnd).toISOString(),
-                }
-                : allocation
-        );
-        setAllocations(newAllocations);
-    };
-
-    const handleScaleChange = (newScale) => {
-        setScale(newScale);
-    };
-
-    const handleNext = () => {
-        setStartDate(prev => moment(prev).add(1, scale));
-        setEndDate(prev => moment(prev).add(1, scale));
-    };
-
-    const handlePrevious = () => {
-        setStartDate(prev => moment(prev).subtract(1, scale));
-        setEndDate(prev => moment(prev).subtract(1, scale));
+    const toggleView = () => {
+        setIsEmployeeAsGroup(prev => !prev);
     };
 
     return (
         <BasePage title='Calendar Timeline'>
-            <div className="selector-container">
-                <div className="selector">
-                    <EmployeeSelector setValue={setEmployee}/>
-                </div>
-                <div className="selector">
-                    <ProjectSelector setValue={setProject}/>
-                </div>
-            </div>
-            <div className="button-select-scale-timeline">
-                <button
-                    onClick={() => handleScaleChange(DAY)}
-                    className={scale === "day" ? "selected" : ""}>Dia
-                </button>
-                <button
-                    onClick={() => handleScaleChange(WEEK)}
-                    className={scale === WEEK ? "selected" : ""}>Semana
-                </button>
-                <button
-                    onClick={() => handleScaleChange(MONTH)}
-                    className={scale === MONTH ? "selected" : ""}>Mês
-                </button>
-                <button
-                    onClick={() => handleScaleChange(YEAR)}
-                    className={scale === YEAR ? "selected" : ""}>Ano
-                </button>
-            </div>
-            <div>
-                <button onClick={handlePrevious}>Anterior</button>
-                <button onClick={handleNext}>Próximo</button>
+            <div style={{margin: '1rem'}}>
+                <EmployeeSelector setValue={setEmployee}/>
+                <ProjectSelector setValue={setProject}/>
             </div>
             {items && items.length > 0 ? (
-                <Timeline
-                    key={`${startDate}-${endDate}`}
-                    className="custom-timeline"
-                    groups={groups}
-                    items={items}
-                    onItemClick={(itemId) => handleItemClick(itemId)}
-                    onItemMove={(itemId, newStart, newEnd) => handleItemMove(itemId, newStart, newEnd)} //TODO VERIFICAR COMO IMPLEMENTAR CORRETAMENTE
-                    defaultTimeStart={startDate}
-                    defaultTimeEnd={endDate}
-                    lineHeight={150}
-                    itemHeight={100}
-                    canMove={false}
-                    canResize={false}
-                    canChangeGroup={true}
-                />
+                <div style={{margin: '2rem'}}>
+                    <ScaleSelector
+                        scale={scale}
+                        setStartDate={setStartDate}
+                        setEndDate={setEndDate}
+                        setScale={setScale}
+                    />
+                    <button className="btn-toggle-view" onClick={toggleView}>
+                        Alternar para {isEmployeeAsGroup ? VIEW_PROJECTS : VIEW_EMPLOYEES}
+                    </button>
+                    <Timeline
+                        key={`${startDate}-${endDate}`}
+                        groups={groups}
+                        items={items}
+                        onItemClick={(itemId) => handleItemClick(itemId)}
+                        defaultTimeStart={startDate}
+                        defaultTimeEnd={endDate}
+                        lineHeight={150}
+                        itemHeight={100}
+                        canMove={true}
+                        canResize={true}
+                        canChangeGroup={true}
+                    />
+                </div>
             ) : (
-                <div>
-                    Não há alocações para exibir.
+                <div className="no-allocations-container">
+                    <div className="no-allocations-message">
+                        <FontAwesomeIcon icon={faExclamationTriangle} className="no-allocations-message icon"/>
+                        <p>Não há alocações para exibir.</p>
+                        <p className="no-allocations-description">
+                            Verifique se há alocações disponíveis ou se o filtro foi corretamente selecionada.
+                        </p>
+                    </div>
                 </div>
             )}
             {selectedItem && (

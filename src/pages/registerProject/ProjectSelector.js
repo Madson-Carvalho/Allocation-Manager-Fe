@@ -8,7 +8,7 @@ const getUrl = () => {
 const ProjectSelector = ({
   defaultValue,
   setValue,
-    title= "Projeto"
+  title= ""
 }) => {
 
   return (

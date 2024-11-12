@@ -1,49 +1,46 @@
-.custom-timeline {
-    border-radius: 1rem !important;
-    margin: 20px;
-}
-
-.selector-container {
+.btn-toggle-view {
+    background-color: #2A63A9;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     display: flex;
-    gap: 16px;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.5);
+    margin-bottom: 1rem;
 }
 
-.selector {
-    margin: 0.5rem;
-    flex: 1;
-    min-width: 0;
+.no-allocations-container {
+    display: flex;
+    margin-top: 6rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.button-select-scale-timeline {
-    button{
-        font-size: 20px;
-        margin: 0.3125rem;
-        display: inline-block;
-        padding: 0.3125rem;
-        cursor: pointer;
-        text-align: center;
-        color: #fff;
-        background-color: gray;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 2px #999;
-    }
-
-    button:hover {
-        background-color: #0056b3;
-    }
-
-    button.selected {
-        padding: 0.4rem;
-        background-color: #0056b3;
-        font-weight: bold;
-    }
-
-    button:disabled {
-        background-color: #d6d6d6;
-        color: #888;
-        cursor: not-allowed;
-    }
+.no-allocations-message {
+    padding: 40px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    font-weight: bold;
+    max-width: 600px;
 }
+
+.no-allocations-message .icon {
+    font-size: 40px;
+    color: #2A63A9;
+    margin-bottom: 15px;
+}
+
+.no-allocations-description {
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+}
+
+
 
 
