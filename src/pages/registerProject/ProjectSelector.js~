@@ -9,7 +9,7 @@ const ProjectSelector = ({
   defaultValue,
   setValue,
   title= "",
-  required = false
+  required = false,
 }) => {
 
   return (

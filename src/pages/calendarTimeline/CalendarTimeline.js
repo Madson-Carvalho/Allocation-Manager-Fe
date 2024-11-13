@@ -113,7 +113,7 @@ const CalendarTimeline = () => {
     };
 
     return (
-        <BasePage title='Calendar Timeline'>
+        <BasePage title='Calendar Timeline' url="/register-allocation">
             <div style={{margin: '1rem'}}>
                 <EmployeeSelector setValue={setEmployee}/>
                 <ProjectSelector setValue={setProject}/>
@@ -126,9 +126,11 @@ const CalendarTimeline = () => {
                         setEndDate={setEndDate}
                         setScale={setScale}
                     />
-                    <button className="btn-toggle-view" onClick={toggleView}>
-                        Alternar para {isEmployeeAsGroup ? VIEW_PROJECTS : VIEW_EMPLOYEES}
-                    </button>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <button className="btn-toggle-view" onClick={toggleView}>
+                            Alternar para {isEmployeeAsGroup ? VIEW_PROJECTS : VIEW_EMPLOYEES}
+                        </button>
+                    </div>
                     <Timeline
                         key={`${startDate}-${endDate}`}
                         groups={groups}
@@ -146,10 +148,10 @@ const CalendarTimeline = () => {
             ) : (
                 <div className="no-allocations-container">
                     <div className="no-allocations-message">
-                        <FontAwesomeIcon icon={faExclamationTriangle} className="no-allocations-message icon"/>
+                        <FontAwesomeIcon icon={faExclamationTriangle} color={'red'} fontSize={'60px'} />
                         <p>Não há alocações para exibir.</p>
                         <p className="no-allocations-description">
-                            Verifique se há alocações disponíveis ou se o filtro foi corretamente selecionada.
+                            Verifique se há alocações disponíveis ou se o filtro foi corretamente selecionado.
                         </p>
                     </div>
                 </div>

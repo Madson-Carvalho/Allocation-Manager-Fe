@@ -21,8 +21,11 @@
 }
 
 .no-allocations-message {
+    padding: 40px 40px;
+    border-radius: 8px;
     font-size: 18px;
     font-weight: bold;
+    max-width: 600px;
 }
 
 .no-allocations-description {

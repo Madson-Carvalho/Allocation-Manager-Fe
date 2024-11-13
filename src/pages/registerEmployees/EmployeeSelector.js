@@ -8,11 +8,13 @@ const getUrl = () => {
 const EmployeeSelector = ({
   defaultValue,
   setValue,
-  title = ""
+  title = "",
+  required = false
 }) => {
 
   return (
     <BaseSelector
+      required={required}
       title={title}
       label="name"
       getUrl={getUrl()}

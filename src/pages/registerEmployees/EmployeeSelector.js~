@@ -2,14 +2,14 @@ import React from 'react';
 import BaseSelector from "../../components/select/BaseSelect";
 
 const getUrl = () => {
-  return `projects/find-all`;
+  return `employees/find-all`;
 }
 
-const ProjectSelector = ({
+const EmployeeSelector = ({
   defaultValue,
   setValue,
-  title= "",
-  required = false
+  title = "",
+  required = false,
 }) => {
 
   return (
@@ -20,9 +20,9 @@ const ProjectSelector = ({
       getUrl={getUrl()}
       setValue={setValue}
       value={defaultValue}
-      rowId="projectId"
+      rowId="employeeId"
     />
   );
 }
 
-export default ProjectSelector;
+export default EmployeeSelector;
