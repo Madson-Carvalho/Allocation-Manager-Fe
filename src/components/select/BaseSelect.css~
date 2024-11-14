@@ -1,6 +1,5 @@
 .base-selector {
     width: 60%;
-    margin-left: 19.5rem;
 }
 
 .select-title {

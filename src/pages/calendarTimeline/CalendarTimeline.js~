@@ -148,7 +148,7 @@ const CalendarTimeline = () => {
             ) : (
                 <div className="no-allocations-container">
                     <div className="no-allocations-message">
-                        <FontAwesomeIcon icon={faExclamationTriangle} color={'red'} fontSize={'60px'}/>
+                        <FontAwesomeIcon icon={faExclamationTriangle} color={'red'} fontSize={'60px'} />
                         <p>Não há alocações para exibir.</p>
                         <p className="no-allocations-description">
                             Verifique se há alocações disponíveis ou se o filtro foi corretamente selecionado.

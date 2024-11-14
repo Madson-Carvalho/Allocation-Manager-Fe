@@ -9,11 +9,13 @@ const ProjectSelector = ({
   defaultValue,
   setValue,
   title= "",
-  required = false
+  required = false,
+  placeholder = "-- selecione para buscar um projeto --"
 }) => {
 
   return (
     <BaseSelector
+      placeholder={placeholder}
       required={required}
       title={title}
       label="name"

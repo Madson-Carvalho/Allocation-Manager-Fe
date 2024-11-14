@@ -23,8 +23,7 @@ const BaseSelector = ({
                           value = null,
                           disabled = false,
                           isMulti = false,
-                          onChange = null,
-                          placeholder = "-- selecione ou digite para buscar --",
+                          placeholder = "-- selecione para buscar --",
                       }) => {
 
     const getOptionLabel = useCallback((row) => extractLabel(label, row), [label]);
@@ -50,16 +49,6 @@ const BaseSelector = ({
         setValue && setValue(value);
     };
 
-    const customStyles = {
-        menu: (provided) => ({
-            ...provided,
-            zIndex: 100,
-            position: 'absolute',
-            marginTop: '4px',
-            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
-        }),
-    };
-
     return (
         <div className="base-selector">
             {title && <label className="select-title">{title}</label>}
@@ -71,7 +60,7 @@ const BaseSelector = ({
                 value={selectedValue}
                 isMulti={isMulti}
                 loadOptions={fetchData}
-                onChange={onChange ? onChange : _onChange}
+                onChange={_onChange}
                 getOptionLabel={getOptionLabel}
                 getOptionValue={getOptionValue}
                 placeholder={placeholder}

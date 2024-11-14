@@ -10,10 +10,12 @@ const ProjectSelector = ({
   setValue,
   title= "",
   required = false,
+  placeholder = "-- selecione para buscar um projeto--"
 }) => {
 
   return (
     <BaseSelector
+      placeholder={placeholder}
       required={required}
       title={title}
       label="name"

@@ -34,7 +34,7 @@ const RegisterAllocation = () => {
     }
 
     const handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         setAllocationData(prevData => ({
             ...prevData,
             [name]: value
@@ -44,14 +44,10 @@ const RegisterAllocation = () => {
     return (
         <BasePage title="Cadastrar Alocação">
             <Form onSubmit={handleSubmit}>
-                <EmployeeSelector required={true}
-                                  setValue={(value) => handleChange({target: {name: 'employee', value}})}/>
-                <ProjectSelector required={true}
-                                 setValue={(value) => handleChange({target: {name: 'project', value}})}/>
-                <CustomInput id='startDate' name='startDate' type='datetime-local' label='Data inicial' placeholder=''
-                             required={true} onChange={handleChange}/>
-                <CustomInput id='endDate' name='endDate' type='datetime-local' label='Data final' placeholder=''
-                             required={true} onChange={handleChange}/>
+                <EmployeeSelector  required={true} setValue={(value) => handleChange({ target: { name: 'employee', value }})}/>
+                <ProjectSelector  required={true} setValue={(value) => handleChange({ target: { name: 'project', value }})}/>
+                <CustomInput id='startDate' name='startDate' type='datetime-local' label='Data inicial' placeholder='' required={true} onChange={handleChange}/>
+                <CustomInput id='endDate' name='endDate' type='datetime-local' label='Data final' placeholder='' required={true} onChange={handleChange}/>
                 <CustomInputSubmit/>
             </Form>
             <ToastContainer

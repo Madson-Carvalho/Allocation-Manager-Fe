@@ -9,11 +9,13 @@ const EmployeeSelector = ({
   defaultValue,
   setValue,
   title = "",
-  required = false
+  required = false,
+  placeholder = "-- selecione para buscar um colaborador --"
 }) => {
 
   return (
     <BaseSelector
+       placeholder={placeholder}
       required={required}
       title={title}
       label="name"
