@@ -15,8 +15,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const CalendarTimeline = () => {
 
-    const VIEW_PROJECTS = 'Visualizar por Projetos';
-    const VIEW_EMPLOYEES = 'Visualizar por Funcionarios';
+    const VIEW_PROJECTS = 'Visualizar projetos de um colaborador';
+    const VIEW_EMPLOYEES = 'Visualizar colaboradores de um projeto';
 
     const [allocations, setAllocations] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -29,7 +29,6 @@ const CalendarTimeline = () => {
     const [startDate, setStartDate] = useState(moment().startOf(MONTH));
     const [endDate, setEndDate] = useState(moment().endOf(MONTH));
     const [scale, setScale] = useState(YEAR);
-
 
     const groupsAsEmployee = allocations?.map(allocation => ({
         id: allocation.employee.employeeId,
@@ -113,24 +112,30 @@ const CalendarTimeline = () => {
     };
 
     return (
-        <BasePage title='Calendar Timeline' url="/register-allocation">
+        <BasePage url="/register-allocation">
+            <button className="btn-toggle-view" onClick={toggleView}>
+                {isEmployeeAsGroup ? VIEW_PROJECTS : VIEW_EMPLOYEES}
+            </button>
             <div>
-                <EmployeeSelector setValue={setEmployee}/>
-                <ProjectSelector setValue={setProject}/>
+                {isEmployeeAsGroup ? (
+                    <ProjectSelector setValue={setProject}/>
+                ) : (
+                    <EmployeeSelector setValue={setEmployee}/>
+                )}
             </div>
             {items && items.length > 0 ? (
                 <div style={{margin: '2rem'}}>
-                    <ScaleSelector
-                        scale={scale}
-                        setStartDate={setStartDate}
-                        setEndDate={setEndDate}
-                        setScale={setScale}
-                    />
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <button className="btn-toggle-view" onClick={toggleView}>
-                            Alternar para {isEmployeeAsGroup ? VIEW_PROJECTS : VIEW_EMPLOYEES}
-                        </button>
-                    </div>
+                    {/*<ScaleSelector*/}
+                    {/*    scale={scale}*/}
+                    {/*    setStartDate={setStartDate}*/}
+                    {/*    setEndDate={setEndDate}*/}
+                    {/*    setScale={setScale}*/}
+                    {/*/>*/}
+                    {employee ? (
+                        <p>Funcionário selecionado: {employee?.name}</p>
+                    ) : project ? (
+                        <p>Projeto selecionado: {project?.name}</p>
+                    ) : null}
                     <Timeline
                         key={`${startDate}-${endDate}`}
                         groups={groups}

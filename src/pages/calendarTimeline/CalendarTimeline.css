@@ -6,7 +6,6 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: flex;
     font-weight: bold;
     box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.5);
     margin-bottom: 1rem;
