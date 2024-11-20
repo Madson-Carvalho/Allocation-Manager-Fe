@@ -2,11 +2,11 @@ import Header from "../header/Header";
 import Main from "../main/Main";
 import Footer from "../footer/Footer";
 
-const BasePage = ({children, title, url}) => {
+const BasePage = ({children, title, onClick}) => {
     return (
         <>
             <Header/>
-            <Main title={title} url={url}>
+            <Main title={title} onClick={onClick}>
                 {children}
             </Main>
             <Footer/>

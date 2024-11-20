@@ -1,13 +1,21 @@
-import './CustomInput.css';
+import {TextField} from "@mui/material";
 
-const CustomInput = ({type, name, id, label, placeholder, required, onChange, value}) => {
+const CustomInput = ({id, label, onChange, value, required, type, start}) => {
 
     return (
-        <div className="input-group defaultInputs">
-            <input type={type} name={name} id={id} required={required} value={value} onChange={onChange}
-                   placeholder={placeholder}/>
-            <label className="label" htmlFor={id}>{label}</label>
-        </div>
+        <TextField
+            id={id}
+            label={label}
+            variant="outlined"
+            value={value}
+            onChange={onChange}
+            fullWidth
+            required={required}
+            type={type}
+            slotProps={{
+                input: {style: {backgroundColor: '#fff', borderRadius: '8px'}},
+            }}
+        />
     )
 }
 

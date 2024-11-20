@@ -1,4 +1,3 @@
-import './Home.css';
 import ReactTable from "../../components/ReactTable/ReactTable";
 import BasePage from "../../components/basePage/BasePage";
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,13 +7,20 @@ import httpGet from "../../utils/httpRequest/httpGet";
 import formatDate from "../../utils/formatDate/formatDate";
 import DeleteModal from "../../components/deleteModal/DeleteModal";
 import httpRemove from "../../utils/httpRequest/httpRemove";
-import {useNavigate} from "react-router-dom";
+import {Box, Modal, Typography} from "@mui/material";
+import style from "../../utils/modalStyle";
+import RegisterProjectForm from "../../components/registerProjectForm/RegisterProjectForm";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [rowToDelete, setRowToDelete] = useState(null);
-    const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+    const [reloadFlag, setReloadFlag] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
+    const [idToEdit, setIdToEdit] = useState(null);
 
     const columns = [
         {
@@ -30,23 +36,13 @@ const Home = () => {
         {
             Header: 'Coordenador do Projeto',
             accessor: 'projectCoordinator',
-            // enableColumFilter: true
+            enableColumFilter: true
         },
-        // {
-        //     Header: 'Fonte Financiadora',
-        //     accessor: 'fundingSource',
-        //     enableColumFilter: true
-        // },
         {
             Header: 'Colaboradores',
             accessor: 'employees',
             enableColumFilter: true
         },
-        // {
-        //     Header: 'Valor Total do Projeto',
-        //     accessor: 'totalProjectValue',
-        //     enableColumFilter: true
-        // },
         {
             Header: 'Data de Início',
             accessor: 'initialDate',
@@ -68,7 +64,7 @@ const Home = () => {
             }));
             setProjects(formattedData);
         });
-    }, [])
+    }, [reloadFlag])
 
     const removeEntity = (id) => {
         httpRemove('projects/delete-project', id);
@@ -87,11 +83,16 @@ const Home = () => {
     };
 
     const handleEdit = (row) => {
-        navigate(`/edit-project/${row?.projectId}`);
+        setIsEdit(true);
+        setIdToEdit(row?.projectId);
+        setOpen(true);
     };
 
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
-        <BasePage url='/create-project'>
+        <BasePage onClick={handleOpen}>
             <ReactTable data={projects} columns={columns} onDelete={handleDelete} onEdit={handleEdit} title="Projetos"/>
             <DeleteModal isOpen={isModalOpen}
                          onClose={() => setIsModalOpen(false)}
@@ -108,6 +109,34 @@ const Home = () => {
                 pauseOnHover
                 theme="light"
             />
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" align="center" variant="h4" component="h2"
+                                style={{color: '#FFF', fontWeight: '700'}}>
+                        {!isEdit ? 'Novo Projeto' : 'Editar Projeto'}
+                    </Typography>
+                    <IconButton
+                        aria-label="close"
+                        onClick={handleClose}
+                        sx={() => ({
+                            position: 'absolute',
+                            right: 25,
+                            top: 15,
+                            color: "#FFF",
+                        })}
+                    >
+                        <CloseIcon  sx={{ fontSize: 40 }}/>
+                    </IconButton>
+                    <RegisterProjectForm setOpen={setOpen} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag}
+                                         isEditMode={isEdit} idToEdit={idToEdit}/>
+                </Box>
+            </Modal>
         </BasePage>
     )
 }

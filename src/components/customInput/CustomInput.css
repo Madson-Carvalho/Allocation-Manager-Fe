@@ -5,7 +5,7 @@
     border: solid 0.5px #d6d6d6;
     outline: none;
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    width: 60%;
+    width: 100%;
     color: #0b3b5b;
     align-self: center;
 }
@@ -19,7 +19,7 @@
 .label {
     position: absolute;
     top: 1rem;
-    left: 24rem;
+    left: 1rem;
     color: #757575;
     pointer-events: none;
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
