@@ -7,7 +7,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.5);
     margin-bottom: 1rem;
 }
 
@@ -30,6 +30,16 @@
     margin-top: 10px;
 }
 
+.react-calendar-timeline .rct-dateHeader-primary {
+    background-color: #2A63A9 !important;
+    font-weight: bold;
+}
 
+.react-calendar-timeline .rct-header-root {
+    background: #2A63A9;
+    font-weight: bold;
+}
 
-
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row    {
+    font-weight: bold;
+}

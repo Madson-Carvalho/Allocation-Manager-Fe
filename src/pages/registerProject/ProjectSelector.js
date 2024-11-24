@@ -10,6 +10,7 @@ const ProjectSelector = ({
   setValue,
   title= "",
   required = false,
+  isDisabled,
   placeholder = "-- selecione para buscar um projeto --"
 }) => {
 
@@ -22,6 +23,7 @@ const ProjectSelector = ({
       getUrl={getUrl()}
       setValue={setValue}
       value={defaultValue}
+      disabled={isDisabled}
       rowId="projectId"
     />
   );

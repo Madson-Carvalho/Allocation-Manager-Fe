@@ -10,6 +10,7 @@ const EmployeeSelector = ({
   setValue,
   title = "",
   required = false,
+  isDisabled,
   placeholder = "-- selecione para buscar um colaborador --"
 }) => {
 
@@ -22,6 +23,7 @@ const EmployeeSelector = ({
       getUrl={getUrl()}
       setValue={setValue}
       value={defaultValue}
+      disabled={isDisabled}
       rowId="employeeId"
     />
   );

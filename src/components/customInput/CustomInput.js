@@ -1,6 +1,6 @@
 import {TextField} from "@mui/material";
 
-const CustomInput = ({id, label, onChange, value, required, type, start}) => {
+const CustomInput = ({id, label, onChange, value, required, type}) => {
 
     return (
         <TextField

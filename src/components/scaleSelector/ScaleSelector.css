@@ -16,13 +16,14 @@
     }
 
     button:hover {
-        background-color: #0056b3;
+        background-color: #2A63A9   ;
     }
 
     button.selected {
         padding: 0.4rem;
-        background-color: #0056b3;
+        background-color: #2A63A9;
         font-weight: bold;
+        text-decoration: none;
     }
 
     button:disabled {

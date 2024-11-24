@@ -1,54 +1,54 @@
 import './ScaleSelector.css';
 import {DAY, MONTH, WEEK, YEAR} from "./Scales";
-import moment from "moment/moment";
+import moment from "moment";
+import {useState} from "react";
 
-const ScaleSelector = ({ scale, setStartDate, setEndDate, setScale }) => {
-
-    const handleNext = () => {
-        setStartDate(prev => moment(prev).add(1, scale));
-        setEndDate(prev => moment(prev).add(1, scale));
-    };
-
-    const handlePrevious = () => {
-        setStartDate(prev => moment(prev).subtract(1, scale));
-        setEndDate(prev => moment(prev).subtract(1, scale));
-    };
-
-    const handleScaleChange = (newScale) => {
-        setScale(newScale);
-    };
+const ScaleSelector = ({setStartDate, setEndDate}) => {
+    const [timeStamp, setTimeStamp] = useState(MONTH);
 
     return (
         <div>
             <div className="button-select-scale-timeline">
                 <button
-                    onClick={() => handleScaleChange(DAY)}
-                    className={scale === DAY ? "selected" : ""}
+                    onClick={() => {
+                        setStartDate(moment().startOf(DAY));
+                        setEndDate(moment().endOf(DAY));
+                        setTimeStamp(DAY);
+                    }}
+                    className={timeStamp === DAY ? "selected" : ""}
                 >
                     Dia
                 </button>
                 <button
-                    onClick={() => handleScaleChange(WEEK)}
-                    className={scale === WEEK ? "selected" : ""}
+                    onClick={() => {
+                        setStartDate(moment().startOf(WEEK));
+                        setEndDate(moment().endOf(WEEK));
+                        setTimeStamp(WEEK);
+                    }}
+                    className={timeStamp === WEEK ? "selected" : ""}
                 >
                     Semana
                 </button>
                 <button
-                    onClick={() => handleScaleChange(MONTH)}
-                    className={scale === MONTH ? "selected" : ""}
+                    onClick={() => {
+                        setStartDate(moment().startOf(MONTH));
+                        setEndDate(moment().endOf(MONTH));
+                        setTimeStamp(MONTH);
+                    }}
+                    className={timeStamp === MONTH ? "selected" : ""}
                 >
                     Mês
                 </button>
                 <button
-                    onClick={() => handleScaleChange(YEAR)}
-                    className={scale === YEAR ? "selected" : ""}
+                    onClick={() => {
+                        setStartDate(moment().startOf(YEAR));
+                        setEndDate(moment().endOf(YEAR));
+                        setTimeStamp(YEAR);
+                    }}
+                    className={timeStamp === YEAR ? "selected" : ""}
                 >
                     Ano
                 </button>
-            </div>
-            <div>
-                <button onClick={handlePrevious}>Anterior</button>
-                <button onClick={handleNext}>Próximo</button>
             </div>
         </div>
     );
