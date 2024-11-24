@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconButton from '@mui/material/IconButton';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
-import CustomInput from "../../components/customInput/CustomInput";
 
 export default function ReactTable({ columns, data, title, onEdit, onDelete }) {
     const [filterColumns, setFilterColumns] = useState([]);
@@ -83,7 +82,7 @@ export default function ReactTable({ columns, data, title, onEdit, onDelete }) {
                             <div className="checkbox-group">
                                 {columns.map((col, index) => (
                                     <label key={index}>
-                                        <CustomInput
+                                        <input
                                             name='name'
                                             type='checkbox'
                                             label=''
