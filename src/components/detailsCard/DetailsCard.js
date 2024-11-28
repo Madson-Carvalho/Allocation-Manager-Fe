@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import './DetailsCard.css';
+import formatSecondsInHours from "../../utils/formatDate/formatSecondsInHours";
 
 const DetailsCard = ({ selectedItem, onClose, position, isEmployee }) => {
   if (!selectedItem) return null;
@@ -21,9 +22,9 @@ const DetailsCard = ({ selectedItem, onClose, position, isEmployee }) => {
             <p><span>Projeto:</span> {selectedItem.project.name}</p>
             <p><span>Colaborador:</span> {selectedItem.employee.name}</p>
             <p><span>Horas alocadas nesse projeto por dia:</span> {selectedItem.allocatedHours} hr</p>
-            <p><span>Horas de trabalho por dia:</span> {selectedItem.employee.workInSeconds} hr</p>
+            <p><span>Horas de trabalho por dia:</span> {selectedItem.employee.allocatedHours} hr</p>
             <p><span>Total de horas
-                ociosas:</span> {selectedItem.employee.workInSeconds - selectedItem.employee.allocatedHours} hr</p>
+                ociosas:</span> {formatSecondsInHours(selectedItem.employee.workInSeconds) - selectedItem.employee.allocatedHours} hr</p>
             <p><span>Total de horas
                 disponíveis do
                 projeto:</span> {selectedItem.project.projectHours - selectedItem.employee.allocatedHours} hr</p>

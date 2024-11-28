@@ -65,6 +65,9 @@ const BaseSelector = ({
                 getOptionValue={getOptionValue}
                 placeholder={placeholder}
                 isSearchable={false}
+                styles={{
+                    menu: (base) => ({ ...base, zIndex: 9999 })
+                }}
             />
         </div>
     );

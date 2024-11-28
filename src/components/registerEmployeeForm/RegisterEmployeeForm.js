@@ -29,6 +29,8 @@ const RegisterEmployeeForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        employeeData.workInSeconds = employeeData.workInSeconds * 3600;
+
         !isEditMode ? httpPost('employees/create-employee', employeeData) : httpPut('employees/update-employee', employeeData)
         setTimeout(() => {
             setReloadFlag(!reloadFlag);

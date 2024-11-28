@@ -1,20 +1,20 @@
 import ReactTable from "../../components/ReactTable/ReactTable";
 import BasePage from "../../components/basePage/BasePage";
+import 'react-toastify/dist/ReactToastify.css';
 import {useEffect, useState} from "react";
-import httpGet from "../../utils/httpRequest/httpGet";
 import {ToastContainer} from "react-toastify";
-import httpRemove from "../../utils/httpRequest/httpRemove";
+import httpGet from "../../utils/httpRequest/httpGet";
+import formatDate from "../../utils/formatDate/formatDate";
 import DeleteModal from "../../components/deleteModal/DeleteModal";
+import httpRemove from "../../utils/httpRequest/httpRemove";
 import {Box, Modal, Typography} from "@mui/material";
 import style from "../../utils/modalStyle";
-import RegisterEmployeeForm from "../../components/registerEmployeeForm/RegisterEmployeeForm";
+import RegisterProjectForm from "../../components/registerProjectForm/RegisterProjectForm";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import formatSecondsInHoursAndMinutes from "../../utils/formatDate/formatSecondsInHoursAndMinutes";
 
-
-const ListEmployees = () => {
-    const [employees, setEmployees] = useState([]);
+const Home = () => {
+    const [projects, setProjects] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [rowToDelete, setRowToDelete] = useState(null);
     const [open, setOpen] = useState(false);
@@ -29,41 +29,46 @@ const ListEmployees = () => {
             enableColumFilter: true
         },
         {
-            Header: 'E-mail',
-            accessor: 'email'
-        },
-        {
-            Header: 'Horas de Trabalho',
-            accessor: 'workInSeconds',
-            enableColumFilter: true,
-            Cell: ({ value }) => {
-                return formatSecondsInHoursAndMinutes(value);
-            }
-        },
-        {
-            Header: 'Cargo',
-            accessor: 'jobRole',
+            Header: 'Horas de Projeto',
+            accessor: 'projectHours',
             enableColumFilter: true
         },
         {
-            Header: 'Formação',
-            accessor: 'qualification',
+            Header: 'Coordenador do Projeto',
+            accessor: 'projectCoordinator',
             enableColumFilter: true
         },
         {
-            Header: 'Especializações',
-            accessor: 'specializations',
+            Header: 'Colaboradores',
+            accessor: 'employees',
+            enableColumFilter: true
+        },
+        {
+            Header: 'Data de Início',
+            accessor: 'initialDate',
+            enableColumFilter: true
+        },
+        {
+            Header: 'Data de Entrega',
+            accessor: 'deliveryDate',
             enableColumFilter: true
         }
     ];
 
     useEffect(() => {
-        httpGet('employees/find-all', setEmployees);
+        httpGet('projects/find-all', (data) => {
+            const formattedData = data.map(project => ({
+                ...project,
+                initialDate: formatDate(project.initialDate),
+                deliveryDate: formatDate(project.deliveryDate)
+            }));
+            setProjects(formattedData);
+        });
     }, [reloadFlag])
 
     const removeEntity = (id) => {
-        httpRemove('employees/delete-employee', id);
-        setEmployees(prevEmployees => prevEmployees.filter(employee => employee.employeeId !== id));
+        httpRemove('projects/delete-project', id);
+        setProjects(prevProjects => prevProjects.filter(project => project.projectId !== id));
     }
 
     const handleDelete = (row) => {
@@ -72,14 +77,14 @@ const ListEmployees = () => {
     };
 
     const confirmDelete = () => {
-        removeEntity(rowToDelete.employeeId)
+        removeEntity(rowToDelete.projectId)
         setIsModalOpen(false);
         setRowToDelete(null);
     };
 
     const handleEdit = (row) => {
         setIsEdit(true);
-        setIdToEdit(row?.employeeId);
+        setIdToEdit(row?.projectId);
         setOpen(true);
     };
 
@@ -88,11 +93,22 @@ const ListEmployees = () => {
 
     return (
         <BasePage onClick={handleOpen}>
-            <ReactTable columns={columns} data={employees} onDelete={handleDelete} onEdit={handleEdit}
-                        title='Colaboradores'/>
+            <ReactTable data={projects} columns={columns} onDelete={handleDelete} onEdit={handleEdit} title="Projetos"/>
             <DeleteModal isOpen={isModalOpen}
                          onClose={() => setIsModalOpen(false)}
                          onConfirm={confirmDelete}/>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
 
             <Modal
                 open={open}
@@ -103,7 +119,7 @@ const ListEmployees = () => {
                 <Box sx={style}>
                     <Typography id="modal-modal-title" align="center" variant="h4" component="h2"
                                 style={{color: '#FFF', fontWeight: '700'}}>
-                        {!isEdit ? 'Novo Colaborador' : 'Editar Colaborador'}
+                        {!isEdit ? 'Novo Projeto' : 'Editar Projeto'}
                     </Typography>
                     <IconButton
                         aria-label="close"
@@ -117,25 +133,12 @@ const ListEmployees = () => {
                     >
                         <CloseIcon  sx={{ fontSize: 40 }}/>
                     </IconButton>
-                    <RegisterEmployeeForm setOpen={setOpen} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag}
-                                          isEditMode={isEdit} idToEdit={idToEdit}/>
+                    <RegisterProjectForm setOpen={setOpen} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag}
+                                         isEditMode={isEdit} idToEdit={idToEdit}/>
                 </Box>
             </Modal>
-
-            <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
         </BasePage>
     )
 }
 
-export default ListEmployees
+export default Home;

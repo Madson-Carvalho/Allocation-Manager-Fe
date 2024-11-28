@@ -39,11 +39,6 @@ const Home = () => {
             enableColumFilter: true
         },
         {
-            Header: 'Colaboradores',
-            accessor: 'employees',
-            enableColumFilter: true
-        },
-        {
             Header: 'Data de Início',
             accessor: 'initialDate',
             enableColumFilter: true

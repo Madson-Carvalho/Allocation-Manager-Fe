@@ -21,16 +21,19 @@ import ScaleSelector from "../../components/scaleSelector/ScaleSelector";
 import TimelineHeaders from "react-calendar-timeline/lib/lib/headers/TimelineHeaders";
 import SidebarHeader from "react-calendar-timeline/lib/lib/headers/SidebarHeader";
 import DateHeader from "react-calendar-timeline/lib/lib/headers/DateHeader";
+import TimelineMarkers from "react-calendar-timeline/lib/lib/markers/public/TimelineMarkers";
+import CustomMarker from "react-calendar-timeline/lib/lib/markers/public/CustomMarker";
 
 const CalendarTimeline = () => {
 
     const VIEW_PROJECTS = 'Visualizar projetos';
     const VIEW_EMPLOYEES = 'Visualizar colaboradores';
+
     const buttonStyle = {
         backgroundColor: '#2A63A9',
         color: 'white',
         padding: '0.6rem 0.3rem',
-        fontSize: '1rem',
+        fontSize: '0.8rem',
         border: 'none',
         borderRadius: '5px',
         cursor: 'pointer',
@@ -137,7 +140,15 @@ const CalendarTimeline = () => {
     };
 
     const toggleView = () => {
-        setIsEmployeeAsGroup(prev => !prev);
+        setIsEmployeeAsGroup(prev => {
+            const newValue = !prev;
+            if (newValue) {
+                setProject(null);
+            } else {
+                setEmployee(null);
+            }
+            return newValue;
+        });
     };
 
     const handleOpen = () => setOpen(true);
@@ -176,7 +187,22 @@ const CalendarTimeline = () => {
                         canMove={true}
                         canResize={true}
                         canChangeGroup={true}
+                        onItemDrag={e => console.log(e)}
                     >
+                        <TimelineMarkers>
+                            <CustomMarker date={Date.now()}>
+                                {({ styles }) => (
+                                    <div
+                                        style={{
+                                            ...styles,
+                                            backgroundColor: 'red',
+                                            width: '2px',
+                                            zIndex: 9998,
+                                        }}
+                                    />
+                                )}
+                            </CustomMarker>
+                        </TimelineMarkers>
                         <TimelineHeaders>
                             <SidebarHeader>
                                 {({getRootProps}) => {

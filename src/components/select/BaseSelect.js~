@@ -64,8 +64,10 @@ const BaseSelector = ({
                 getOptionLabel={getOptionLabel}
                 getOptionValue={getOptionValue}
                 placeholder={placeholder}
-                styles={customStyles}
                 isSearchable={false}
+                styles={{
+                    menu: (base) => ({ ...base, zIndex: 9999 }) // Ajusta o z-index para sobrepor tudo
+                }}
             />
         </div>
     );
