@@ -1,0 +1,35 @@
+main {
+    min-height: 90vh;
+}
+
+.headerPage {
+    margin-top: -5rem;
+    margin-bottom: -2.4rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+}
+
+.headerPage > h2 {
+    margin: 3rem;
+}
+
+.headerPage > a {
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 2.5rem;
+    background-color: #2A63A9;
+    text-decoration: none;
+    padding-top: -2rem;
+    text-decoration: none;
+    border-radius: 1.5rem;   
+}
+
+.headerPage .MuiSvgIcon-root {
+    color: white;
+    font-size: 3rem;
+}

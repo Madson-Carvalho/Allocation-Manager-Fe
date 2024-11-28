@@ -6,14 +6,21 @@ const httpPost = (path, dataToSave) => {
     fetch(`${baseUrl}${path}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataToSave)
+        body: JSON.stringify(dataToSave),
     })
         .then(response => {
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);
+                });
+            }
             toast.success(`Dado criado com sucesso!`);
         })
-        .catch(e => toast.error(`Erro ao salvar dados ${e}`))
-}
+        .catch(e => {
+            toast.error(`Erro ao salvar dados: ${e.message || e}`);
+        });
+};
 
 export default httpPost;
