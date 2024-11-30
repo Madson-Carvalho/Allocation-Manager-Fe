@@ -1,7 +1,3 @@
-.customTable * {
-    font-weight: 900;
-}
-
 .customTable {
     width: 100%;
     border-collapse: collapse;
@@ -56,6 +52,8 @@
     justify-content: space-between;
     width: 98%;
     padding: 1rem;
+    font-weight: bold;
+    font-size: medium;
 }
 
 .tableFooter >select {
@@ -65,7 +63,7 @@
     background-color: #2A63A9;
     border: none;
     border-radius: 20px;
-    width: 7rem;
+    width: 8rem;
     height: 1.9rem;
     cursor: pointer;
     text-align: center;
@@ -95,6 +93,8 @@
     border: none;
     width: 5rem;
     border-radius: 20px;
+    font-weight: bold;
+    font-size: medium;
 }
 
 #looseThread{
@@ -122,17 +122,14 @@
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     margin-left: 4px;
+    font-weight: bold;
 }
 
 .IconButton:hover, .clear-button:hover {
     background-color: #4c7db9;
-}
-
-.clear-button {
-    background-color: #2A63A9;
 }
 
 .dropdown-content {
@@ -146,6 +143,7 @@
     margin-top: 5px;
     z-index: 1000;
     margin-left: 1rem;
+    font-weight: bold;
 }
 
 .checkbox-group label {
@@ -184,11 +182,17 @@
     border: 1px solid #ddd; 
     width: 300px;
     padding: 0.5rem;
+    font-weight: bold;
 }
 
 .filter-inputs input[type="text"]:focus {
     outline: none; 
     border-color: #2A63A9;
     box-shadow: 0 0 5px rgba(42, 99, 169, 0.4);
+}
+
+.option {
+    font-weight: bold;
+    font-size: medium;
 }
 

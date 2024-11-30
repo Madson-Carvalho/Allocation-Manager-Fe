@@ -4,7 +4,7 @@ header {
     justify-content: space-between;
     padding: 0 2rem;
     background-color: #2A63A9;
-    height: 4rem;
+    height: 5rem;
     color: #ffffff;
 }
 
@@ -35,7 +35,7 @@ header > a > svg {
 }
 
 header > a > img {
-    height: 8rem;
+    height: 10rem;
 }
 
 header > nav {

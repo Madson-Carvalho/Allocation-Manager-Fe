@@ -1,11 +1,11 @@
 import ReactTable from "../../components/ReactTable/ReactTable";
 import BasePage from "../../components/basePage/BasePage";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import httpGet from "../../utils/httpRequest/httpGet";
-import {ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import httpRemove from "../../utils/httpRequest/httpRemove";
 import DeleteModal from "../../components/deleteModal/DeleteModal";
-import {Box, Modal, Typography} from "@mui/material";
+import { Box, Modal, Typography } from "@mui/material";
 import style from "../../utils/modalStyle";
 import RegisterEmployeeForm from "../../components/registerEmployeeForm/RegisterEmployeeForm";
 import CloseIcon from "@mui/icons-material/Close";
@@ -33,6 +33,19 @@ const ListEmployees = () => {
         {
             Header: 'Horas de Trabalho',
             accessor: 'workInSeconds',
+            Cell: ({ value }) => `${value} hrs`,
+            enableColumFilter: true
+        },
+        {
+            Header: 'Projetos Alocados',
+            accessor: 'allocatedProjects',
+            Cell: ({ value }) => (value ? value : 'Nenhum'),
+            enableColumFilter: false
+        },
+        {
+            Header: 'Horas Ociosas',
+            accessor: 'hoursOtiose',
+            Cell: ({ value }) => `${value} hrs`,
             enableColumFilter: true
         },
         {
@@ -53,8 +66,18 @@ const ListEmployees = () => {
     ];
 
     useEffect(() => {
-        httpGet('employees/find-all', setEmployees);
-    }, [reloadFlag])
+        httpGet('employees/find-all', (data) => {
+            const formattedData = data.map(employee => ({
+                ...employee,
+                hoursOtiose: (employee.workInSeconds || 0) - (employee.allocatedHours || 0),
+                allocatedProjects: employee.allocatedProjects
+                    ? employee.allocatedProjects.map(project => project.name).join(', ')
+                    : 'Nenhum'
+            }));
+            setEmployees(formattedData);
+        });
+    }, [reloadFlag]);
+    
 
     const removeEntity = (id) => {
         httpRemove('employees/delete-employee', id);
@@ -84,10 +107,10 @@ const ListEmployees = () => {
     return (
         <BasePage onClick={handleOpen}>
             <ReactTable columns={columns} data={employees} onDelete={handleDelete} onEdit={handleEdit}
-                        title='Colaboradores'/>
+                title='Colaboradores' />
             <DeleteModal isOpen={isModalOpen}
-                         onClose={() => setIsModalOpen(false)}
-                         onConfirm={confirmDelete}/>
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={confirmDelete} />
 
             <Modal
                 open={open}
@@ -97,7 +120,7 @@ const ListEmployees = () => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" align="center" variant="h4" component="h2"
-                                style={{color: '#FFF', fontWeight: '700'}}>
+                        style={{ color: '#FFF', fontWeight: '700' }}>
                         {!isEdit ? 'Novo Colaborador' : 'Editar Colaborador'}
                     </Typography>
                     <IconButton
@@ -110,16 +133,16 @@ const ListEmployees = () => {
                             color: "#FFF",
                         })}
                     >
-                        <CloseIcon  sx={{ fontSize: 40 }}/>
+                        <CloseIcon sx={{ fontSize: 40 }} />
                     </IconButton>
                     <RegisterEmployeeForm setOpen={setOpen} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag}
-                                          isEditMode={isEdit} idToEdit={idToEdit}/>
+                        isEditMode={isEdit} idToEdit={idToEdit} />
                 </Box>
             </Modal>
 
             <ToastContainer
                 position="top-center"
-                autoClose={5000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

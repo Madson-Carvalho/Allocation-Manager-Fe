@@ -1,11 +1,15 @@
-.base-selector {
-    width: 60%;
+.base-selector.allocation-form-context {
+    width: 100%;
 }
 
-.select-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    display: block;
-    color: #333;
+.base-selector.calendar-timeline-context {
+    padding: 8px;
+    width: 60%;
+    z-index: 1000; 
+    position: relative; 
+}
+
+.base-selector {
+    position: relative;
+    z-index: 1;
 }

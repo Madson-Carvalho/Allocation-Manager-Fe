@@ -19,11 +19,14 @@
     text-align: center; 
 }
 
+h3 {
+    padding: 1rem;
+}
 .close-btn {
     position: absolute;
-    top: 5px;
-    right: 10px;
-    background-color: white;
+    top: -2px;
+    right: -2px;
+    background-color: rgba(255, 255, 255, 0);
     color: #2A63A9;
     border: none;
     font-size: 20px;
@@ -33,12 +36,14 @@
 
 .cancel-btn {
     background-color: #a5a3a3;  
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     margin: 10px;
+    font-weight: bold;
+    font-size: medium;
 }
 
 .confirm-btn {
@@ -49,6 +54,8 @@
     cursor: pointer;
     border-radius: 5px;
     margin: 10px;
+    font-weight: bold;
+    font-size: medium;
 }
 
 .modal-actions {
