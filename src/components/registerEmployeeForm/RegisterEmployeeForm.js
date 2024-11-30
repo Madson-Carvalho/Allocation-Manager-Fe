@@ -7,6 +7,7 @@ import CustomInputSubmit from "../customInputSubmit/CustomInputSubmit";
 import Form from "../form/Form";
 
 const RegisterEmployeeForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, setOpen}) => {
+    const [disabled, setDisabled] = useState(false)
     const [employeeData, setEmployeeData] = useState({
         name: null,
         email: null,
@@ -28,8 +29,9 @@ const RegisterEmployeeForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setDisabled(true) 
 
-        !isEditMode ? httpPost('employees/create-employee', employeeData) : httpPut('employees/update-employee', employeeData)
+        !isEditMode ? httpPost('employees/create-employee', employeeData, setDisabled) : httpPut('employees/update-employee', employeeData, setDisabled)
         setTimeout(() => {
             setReloadFlag(!reloadFlag);
             setOpen(false);
@@ -51,7 +53,7 @@ const RegisterEmployeeForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, 
                          onChange={handleChange}/>
             <CustomInput id='specializations' type='text' label='Especializações' value={employeeData.specializations}
                          onChange={handleChange}/>
-            <CustomInputSubmit/>
+            <CustomInputSubmit disabled={disabled}/>
         </Form>
     )
 }

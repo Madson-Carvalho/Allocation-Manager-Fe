@@ -8,6 +8,7 @@ import httpGet from "../../utils/httpRequest/httpGet";
 import formatDateToInput from "../../utils/formatDate/formatDateToInput";
 
 const RegisterProjectForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, setOpen}) => {
+    const [disabled, setDisabled] = useState(false)
     const [projectToSave, setProjectToSave] = useState({
         name: "",
         projectHours: "",
@@ -38,6 +39,7 @@ const RegisterProjectForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, s
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setDisabled(true) 
 
         const formattedData = {
             ...projectToSave,
@@ -45,7 +47,7 @@ const RegisterProjectForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, s
             deliveryDate: new Date(projectToSave.deliveryDate).toISOString()
         };
 
-        !isEditMode ? httpPost('projects/create-project', formattedData) : httpPut('projects/update-project', formattedData)
+        !isEditMode ? httpPost('projects/create-project', formattedData, setDisabled) : httpPut('projects/update-project', formattedData, setDisabled)
         setTimeout(() => {
             setReloadFlag(!reloadFlag);
             setOpen(false);
@@ -70,7 +72,7 @@ const RegisterProjectForm = ({isEditMode, idToEdit, setReloadFlag, reloadFlag, s
                          value={projectToSave.initialDate} onChange={handleChange}/>
             <CustomInput id='deliveryDate' label='Data final' type='date' required={true}
                          value={projectToSave.deliveryDate} onChange={handleChange}/>
-            <CustomInputSubmit/>
+            <CustomInputSubmit disabled={disabled}/>
         </Form>
     )
 }
