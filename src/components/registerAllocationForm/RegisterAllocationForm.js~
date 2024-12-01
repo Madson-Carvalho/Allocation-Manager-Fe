@@ -52,7 +52,7 @@ const RegisterAllocationForm = ({setReloadFlag, reloadFlag, setOpen}) => {
                          required={true} onChange={handleChange}/>
             <CustomInput id='allocatedHours' type='number' label='Horas alocadas diariamente' value={allocationData.allocatedHours}
                          required={true} onChange={handleChange}/>
-            <CustomInputSubmit disabled={disabled}/>
+            <CustomInputSubmit/>
         </Form>
     )
 }
