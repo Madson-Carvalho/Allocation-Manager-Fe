@@ -11,12 +11,13 @@ const EmployeeSelector = ({
   title = "",
   required = false,
   isDisabled,
+  usageContext = "",
   placeholder = "-- selecione para buscar um colaborador --"
 }) => {
 
   return (
     <BaseSelector
-       placeholder={placeholder}
+      placeholder={placeholder}
       required={required}
       title={title}
       label="name"
@@ -25,6 +26,8 @@ const EmployeeSelector = ({
       value={defaultValue}
       disabled={isDisabled}
       rowId="employeeId"
+      className="employee-selector"
+      usageContext={usageContext}
     />
   );
 }

@@ -201,6 +201,7 @@ export default function ReactTable({ columns, data, title, onEdit, onDelete }) {
                     </button>
                 </div>
                 <select
+                    className='option'
                     value={pageSize}
                     onChange={e => {
                         setPageSize(Number(e.target.value));

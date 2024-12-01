@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import AsyncSelect from 'react-select/async';
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import httpGet from "../../utils/httpRequest/httpGet";
 import './BaseSelect.css';
 
@@ -13,18 +13,20 @@ const extractLabel = (label, row) => {
 }
 
 const BaseSelector = ({
-                          required = false,
-                          label = null,
-                          title = '',
-                          rowId = 'id',
-                          getUrl = null,
-                          setValue = null,
-                          setValueId,
-                          value = null,
-                          disabled = false,
-                          isMulti = false,
-                          placeholder = "-- selecione para buscar --",
-                      }) => {
+    required = false,
+    label = null,
+    title = '',
+    rowId = 'id',
+    getUrl = null,
+    setValue = null,
+    setValueId,
+    value = null,
+    disabled = false,
+    isMulti = false,
+    className = "",
+    usageContext = "",
+    placeholder = "-- selecione para buscar --",
+}) => {
 
     const getOptionLabel = useCallback((row) => extractLabel(label, row), [label]);
     const getOptionValue = useCallback((row) => row[rowId], [rowId]);
@@ -50,7 +52,7 @@ const BaseSelector = ({
     };
 
     return (
-        <div className="base-selector">
+        <div className={`base-selector ${className} ${usageContext}`}>
             {title && <label className="select-title">{title}</label>}
             <AsyncSelect
                 isClearable
@@ -65,9 +67,14 @@ const BaseSelector = ({
                 getOptionValue={getOptionValue}
                 placeholder={placeholder}
                 isSearchable={false}
+                menuPosition="absolute"
+                menuPortalTarget={document.body}
+                styles={{
+                    menuPortal: base => ({ ...base, zIndex: 9999 })
+                }}
             />
         </div>
     );
-};
+}
 
 export default BaseSelector;

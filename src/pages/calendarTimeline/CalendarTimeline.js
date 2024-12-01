@@ -2,21 +2,21 @@ import Timeline from "react-calendar-timeline";
 import moment from 'moment';
 import 'react-calendar-timeline/lib/Timeline.css';
 import BasePage from "../../components/basePage/BasePage";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import httpGet from "../../utils/httpRequest/httpGet";
 import './CalendarTimeline.css';
 import DetailsCard from "../../components/detailsCard/DetailsCard";
 import EmployeeSelector from "../registerEmployees/EmployeeSelector";
 import ProjectSelector from "../registerProject/ProjectSelector";
-import {MONTH} from "../../components/scaleSelector/Scales";
-import {faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Box, Button, Modal, Typography} from "@mui/material";
+import { MONTH } from "../../components/scaleSelector/Scales";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import style from "../../utils/modalStyle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import RegisterAllocationForm from "../../components/registerAllocationForm/RegisterAllocationForm";
-import {ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import ScaleSelector from "../../components/scaleSelector/ScaleSelector";
 import TimelineHeaders from "react-calendar-timeline/lib/lib/headers/TimelineHeaders";
 import SidebarHeader from "react-calendar-timeline/lib/lib/headers/SidebarHeader";
@@ -43,8 +43,8 @@ const CalendarTimeline = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [employee, setEmployee] = useState(null);
     const [project, setProject] = useState(null);
-    const [filters, setFilters] = useState({employeeId: '', projectId: '', startDate: '', endDate: ''});
-    const [cardPosition, setCardPosition] = useState({top: 0, left: 0});
+    const [filters, setFilters] = useState({ employeeId: '', projectId: '', startDate: '', endDate: '' });
+    const [cardPosition, setCardPosition] = useState({ top: 0, left: 0 });
     const [isEmployeeAsGroup, setIsEmployeeAsGroup] = useState(true);
     const [open, setOpen] = useState(false);
     const [reloadFlag, setReloadFlag] = useState(false);
@@ -108,7 +108,7 @@ const CalendarTimeline = () => {
 
     useEffect(() => {
         const handleMouseClick = (event) => {
-            setCardPosition({top: event.clientY, left: event.clientX});
+            setCardPosition({ top: event.clientY, left: event.clientX });
         };
         window.addEventListener("click", handleMouseClick);
         return () => window.removeEventListener("click", handleMouseClick);
@@ -155,11 +155,19 @@ const CalendarTimeline = () => {
                 <Button style={buttonStyle} onClick={toggleView}>
                     {isEmployeeAsGroup ? VIEW_PROJECTS : VIEW_EMPLOYEES}
                 </Button>
-                <ProjectSelector setValue={setProject} isDisabled={isEmployeeAsGroup}/>
-                <EmployeeSelector setValue={setEmployee} isDisabled={!isEmployeeAsGroup}/>
+                <ProjectSelector
+                    setValue={setProject}
+                    isDisabled={isEmployeeAsGroup}
+                    usageContext="calendar-timeline-context"
+                />
+                <EmployeeSelector
+                    setValue={setEmployee}
+                    isDisabled={!isEmployeeAsGroup}
+                    usageContext="calendar-timeline-context"
+                />
             </Box>
             {items && items.length > 0 ? (
-                <div style={{margin: '2rem'}}>
+                <div style={{ margin: '2rem' }}>
                     <ScaleSelector
                         setStartDate={setStartDate}
                         setEndDate={setEndDate}
@@ -179,20 +187,20 @@ const CalendarTimeline = () => {
                     >
                         <TimelineHeaders>
                             <SidebarHeader>
-                                {({getRootProps}) => {
+                                {({ getRootProps }) => {
                                     return <Typography {...getRootProps()} alignSelf={'center'}
-                                                       color='#FFF'><strong>{isEmployeeAsGroup ? 'Colaborador' : 'Projeto'}</strong></Typography>
+                                        color='#FFF'><strong>{isEmployeeAsGroup ? 'Colaborador' : 'Projeto'}</strong></Typography>
                                 }}
                             </SidebarHeader>
-                            <DateHeader unit="primaryHeader"/>
-                            <DateHeader/>
+                            <DateHeader unit="primaryHeader" />
+                            <DateHeader />
                         </TimelineHeaders>
                     </Timeline>
                 </div>
             ) : (
                 <div className="no-allocations-container">
                     <div className="no-allocations-message">
-                        <FontAwesomeIcon icon={faExclamationTriangle} color={'red'} fontSize={'60px'}/>
+                        <FontAwesomeIcon icon={faExclamationTriangle} color={'red'} fontSize={'60px'} />
                         <p>Não há alocações para exibir.</p>
                         <p className="no-allocations-description">
                             Verifique se há alocações disponíveis ou se o filtro foi corretamente selecionado.
@@ -217,7 +225,7 @@ const CalendarTimeline = () => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" align="center" variant="h4" component="h2"
-                                style={{color: '#FFF', fontWeight: '700'}}>
+                        style={{ color: '#FFF', fontWeight: '700' }}>
                         Alocar Colaborador
                     </Typography>
                     <IconButton
@@ -230,15 +238,15 @@ const CalendarTimeline = () => {
                             color: "#FFF",
                         })}
                     >
-                        <CloseIcon sx={{fontSize: 40}}/>
+                        <CloseIcon sx={{ fontSize: 40 }} />
                     </IconButton>
-                    <RegisterAllocationForm setOpen={setOpen} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag}/>
+                    <RegisterAllocationForm setOpen={setOpen} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag} />
                 </Box>
             </Modal>
 
             <ToastContainer
                 position="top-center"
-                autoClose={5000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

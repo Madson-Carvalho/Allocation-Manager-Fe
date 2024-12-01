@@ -31,16 +31,18 @@ const Home = () => {
         {
             Header: 'Horas de Projeto',
             accessor: 'projectHours',
+            Cell: ({ value }) => `${value} hrs`,
+            enableColumFilter: true
+        },
+        {
+            Header: 'Horas Restantes',
+            accessor: 'hoursRemaining',
+            Cell: ({ value }) => `${value} hrs`,
             enableColumFilter: true
         },
         {
             Header: 'Coordenador do Projeto',
             accessor: 'projectCoordinator',
-            enableColumFilter: true
-        },
-        {
-            Header: 'Colaboradores',
-            accessor: 'employees',
             enableColumFilter: true
         },
         {
@@ -57,14 +59,19 @@ const Home = () => {
 
     useEffect(() => {
         httpGet('projects/find-all', (data) => {
-            const formattedData = data.map(project => ({
-                ...project,
-                initialDate: formatDate(project.initialDate),
-                deliveryDate: formatDate(project.deliveryDate)
-            }));
+            const formattedData = data.map(project => {
+                const hoursRemaining = project.projectHours - (project.allocatedHours || 0);
+                return {
+                    ...project,
+                    hoursRemaining, 
+                    initialDate: formatDate(project.initialDate),
+                    deliveryDate: formatDate(project.deliveryDate),
+                };
+            });
             setProjects(formattedData);
         });
-    }, [reloadFlag])
+    }, [reloadFlag]);
+    
 
     const removeEntity = (id) => {
         httpRemove('projects/delete-project', id);
@@ -99,7 +106,7 @@ const Home = () => {
                          onConfirm={confirmDelete}/>
             <ToastContainer
                 position="top-center"
-                autoClose={5000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
