@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import httpPost from "../../utils/httpRequest/httpPost";
 import EmployeeSelector from "../../pages/registerEmployees/EmployeeSelector";
 import ProjectSelector from "../../pages/registerProject/ProjectSelector";
@@ -33,7 +33,7 @@ const RegisterAllocationForm = ({setReloadFlag, reloadFlag, setOpen}) => {
     }
 
     const handleChange = (event) => {
-        const {id, value} = event.target;
+        const { id, value } = event.target;
         setAllocationData(prevData => ({
             ...prevData,
             [id]: value
@@ -42,17 +42,25 @@ const RegisterAllocationForm = ({setReloadFlag, reloadFlag, setOpen}) => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <EmployeeSelector required={true}
-                              setValue={(value) => handleChange({target: {id: 'employee', value}})}/>
-            <ProjectSelector required={true}
-                             setValue={(value) => handleChange({target: {id: 'project', value}})}/>
+            <EmployeeSelector
+                required={true}
+                setValue={(value) => handleChange({ target: { id: 'employee', value } })}
+                usageContext="allocation-form-context"
+            />
+            <ProjectSelector
+                required={true}
+                setValue={(value) => handleChange({ target: { id: 'project', value } })}
+                usageContext="allocation-form-context"
+            />
             <CustomInput id='startDate' type='datetime-local' label='Data inicial' value={allocationData.startDate}
-                         required={true} onChange={handleChange}/>
+                required={true} onChange={handleChange} />
             <CustomInput id='endDate' type='datetime-local' label='Data final' value={allocationData.endDate}
-                         required={true} onChange={handleChange}/>
+                required={true} onChange={handleChange} />
             <CustomInput id='allocatedHours' type='number' label='Horas alocadas diariamente' value={allocationData.allocatedHours}
                          required={true} onChange={handleChange}/>
             <CustomInputSubmit disabled={disabled}/>
+                required={true} onChange={handleChange} />
+            <CustomInputSubmit />
         </Form>
     )
 }

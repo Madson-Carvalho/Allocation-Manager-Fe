@@ -8,9 +8,10 @@ const getUrl = () => {
 const ProjectSelector = ({
   defaultValue,
   setValue,
-  title= "",
+  title = "",
   required = false,
   isDisabled,
+  usageContext = "",
   placeholder = "-- selecione para buscar um projeto --"
 }) => {
 
@@ -25,8 +26,11 @@ const ProjectSelector = ({
       value={defaultValue}
       disabled={isDisabled}
       rowId="projectId"
+      className="project-selector"
+      usageContext={usageContext}
     />
   );
+
 }
 
 export default ProjectSelector;

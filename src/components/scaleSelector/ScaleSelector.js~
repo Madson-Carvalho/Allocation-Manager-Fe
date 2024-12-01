@@ -1,5 +1,5 @@
 import './ScaleSelector.css';
-import {MONTH, WEEK, YEAR} from "./Scales";
+import {DAY, MONTH, WEEK, YEAR} from "./Scales";
 import moment from "moment";
 import {useState} from "react";
 
