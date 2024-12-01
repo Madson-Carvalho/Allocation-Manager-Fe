@@ -12,6 +12,8 @@
 }
 
 .details-button {
+    margin: 5px;
+    padding: 5px;
     width: 50%;
     height: 2.5rem;
     align-self: center;
@@ -24,6 +26,21 @@
     font-size: 1.2rem;
 }
 
+.details-button:hover {
+    background-color: #5C92A8;
+    border-color: #5C92A8;
+}
+
+.details-button.delete {
+    background-color: #D9534F;
+    border-color: #D9534F;
+}
+
+.details-button.delete:hover {
+    background-color: #C9302C;
+    border-color: #C9302C;
+}
+
 .details-body {
     display: flex;
     flex-direction: column;
@@ -34,4 +51,8 @@
 
 .details-body > p > span {
     font-weight: bold;
+}
+
+.details-container-buttons{
+    display: flex;
 }
