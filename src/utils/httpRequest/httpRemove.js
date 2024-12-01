@@ -8,6 +8,9 @@ const httpRemove = (path, id) => {
     })
         .then(res => {
             toast.success('Registro removido com sucesso!');
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         })
         .catch(error => toast.error('Erro ao remover registro:', error));
 }
