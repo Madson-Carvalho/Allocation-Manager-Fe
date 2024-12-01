@@ -11,8 +11,6 @@ import {useNavigate} from "react-router-dom";
 
 const RegisterAllocation = () => {
 
-    const navigate = useNavigate();
-
     const [allocationData, setAllocationData] = useState({
         employee: null,
         project: null,
@@ -27,10 +25,6 @@ const RegisterAllocation = () => {
         allocationData.endDate = new Date(allocationData.endDate).toISOString();
 
         httpPost("allocation/allocate-employee-the-project", allocationData);
-
-        // setTimeout(() => {
-        //     navigate(-1);
-        // }, 3000);
     }
 
     const handleChange = (event) => {

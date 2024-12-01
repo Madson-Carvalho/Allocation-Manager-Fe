@@ -38,7 +38,7 @@ const ListEmployees = () => {
         },
         {
             Header: 'Projetos Alocados',
-            accessor: 'allocatedProjects',
+            accessor: 'countAllocatedProjects',
             Cell: ({ value }) => (value ? value : 'Nenhum'),
             enableColumFilter: false
         },
