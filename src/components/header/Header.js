@@ -12,7 +12,6 @@ const Header = () => {
                 <Link to={'/'} title="Home" className={getPath('/', currentPath) ? "selected" : ""}>home</Link>
                 <Link to='/employees' title="Colaboradores" className={getPath('/employees', currentPath) ? "selected" : ""}>colaboradores</Link>
                 <Link to={'/react-calendar-timeline'} title="Gantt" className={getPath('/react-calendar-timeline', currentPath) ? "selected" : ""}>gantt</Link>
-
             </nav>
         </header>
     )
