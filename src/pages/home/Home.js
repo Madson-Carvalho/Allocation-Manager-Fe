@@ -95,7 +95,11 @@ const Home = () => {
         setOpen(true);
     };
 
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        setIsEdit(false)
+        setIdToEdit(null)
+        setOpen(true)
+    };
     const handleClose = () => setOpen(false);
 
     return (

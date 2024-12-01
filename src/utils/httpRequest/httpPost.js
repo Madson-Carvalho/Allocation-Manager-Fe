@@ -1,6 +1,6 @@
 import {toast} from "react-toastify";
 
-const httpPost = (path, dataToSave) => {
+const httpPost = (path, dataToSave, setDisabled) => {
     const baseUrl = 'http://localhost:8080/api/v1/';
 
     fetch(`${baseUrl}${path}`, {
@@ -17,9 +17,11 @@ const httpPost = (path, dataToSave) => {
                 });
             }
             toast.success(`Dado criado com sucesso!`);
+            setDisabled(true)
         })
         .catch(e => {
             toast.error(`Erro ao salvar dados: ${e.message || e}`);
+            setDisabled(false)
         });
 };
 

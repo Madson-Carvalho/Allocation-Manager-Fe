@@ -23,10 +23,7 @@ const DetailsCard = ({ selectedItem, onClose, position, isEmployee }) => {
             <p><span>Horas alocadas nesse projeto por dia:</span> {selectedItem.allocatedHours} hr</p>
             <p><span>Horas de trabalho por dia:</span> {selectedItem.employee.workInSeconds} hr</p>
             <p><span>Total de horas
-                ociosas:</span> {selectedItem.employee.workInSeconds - selectedItem.employee.allocatedHours} hr</p>
-            <p><span>Total de horas
-                disponíveis do
-                projeto:</span> {selectedItem.project.projectHours - selectedItem.employee.allocatedHours} hr</p>
+                ociosas:</span> {selectedItem.employee.workInSeconds - selectedItem.allocatedHours} hr</p>
             <p><span>Data de Início da alocação:</span> {moment(selectedItem.startDate).format("DD/MM/YYYY HH:mm")}</p>
             <p><span>Data de Término da alocação:</span> {moment(selectedItem.endDate).format("DD/MM/YYYY HH:mm")}</p>
             <p><span>Data de Início do projeto:</span> {moment(selectedItem.project.initialDate).format("DD/MM/YYYY HH:mm")}</p>

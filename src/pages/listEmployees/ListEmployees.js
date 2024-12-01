@@ -38,7 +38,7 @@ const ListEmployees = () => {
         },
         {
             Header: 'Projetos Alocados',
-            accessor: 'allocatedProjects',
+            accessor: 'countAllocatedProjects',
             Cell: ({ value }) => (value ? value : 'Nenhum'),
             enableColumFilter: false
         },
@@ -101,7 +101,11 @@ const ListEmployees = () => {
         setOpen(true);
     };
 
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        setIsEdit(false)
+        setIdToEdit(null)
+        setOpen(true);
+    }
     const handleClose = () => setOpen(false);
 
     return (

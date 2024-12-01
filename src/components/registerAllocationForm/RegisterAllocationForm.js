@@ -6,7 +6,8 @@ import CustomInput from "../customInput/CustomInput";
 import CustomInputSubmit from "../customInputSubmit/CustomInputSubmit";
 import Form from "../form/Form";
 
-const RegisterAllocationForm = ({ setReloadFlag, reloadFlag, setOpen }) => {
+const RegisterAllocationForm = ({setReloadFlag, reloadFlag, setOpen}) => {
+    const [disabled, setDisabled] = useState(false)
     const [allocationData, setAllocationData] = useState({
         employee: null,
         project: null,
@@ -17,12 +18,13 @@ const RegisterAllocationForm = ({ setReloadFlag, reloadFlag, setOpen }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setDisabled(true);
 
         allocationData.startDate = new Date(allocationData.startDate).toISOString();
         allocationData.endDate = new Date(allocationData.endDate).toISOString();
         allocationData.allocatedHours = parseInt(allocationData.allocatedHours);
 
-        httpPost("allocations/allocate-employee-the-project", allocationData);
+        httpPost("allocations/allocate-employee-the-project", allocationData, setDisabled);
 
         setTimeout(() => {
             setReloadFlag(!reloadFlag);
@@ -55,8 +57,8 @@ const RegisterAllocationForm = ({ setReloadFlag, reloadFlag, setOpen }) => {
             <CustomInput id='endDate' type='datetime-local' label='Data final' value={allocationData.endDate}
                 required={true} onChange={handleChange} />
             <CustomInput id='allocatedHours' type='number' label='Horas alocadas diariamente' value={allocationData.allocatedHours}
-                required={true} onChange={handleChange} />
-            <CustomInputSubmit />
+                         required={true} onChange={handleChange}/>
+            <CustomInputSubmit disabled={disabled}/>
         </Form>
     )
 }
