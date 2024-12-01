@@ -1,70 +1,65 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Allocation Manager Front-End
+Este é o front-end do Allocation Manager, uma aplicação para gerenciamento de alocações. Este projeto foi construído utilizando React com várias bibliotecas de UI e ferramentas para melhorar a experiência do desenvolvedor e a interface do usuário.
+Objetivo
+Desenvolver uma plataforma que facilite:
+Planejamento Preciso: Atribuição de tarefas e responsabilidades baseada na visualização das horas disponíveis.
+Otimização da Produtividade: Alinhamento de competências dos colaboradores com as necessidades do projeto.
+Flexibilidade: Adaptação dinâmica a mudanças nos projetos e na disponibilidade de recursos.
+Tecnologias Utilizadas
+React: Framework JavaScript para construção de interfaces de usuário.
+Material UI: Biblioteca de componentes de UI baseada em Material Design.
+FontAwesome: Biblioteca de ícones vetoriais escaláveis.
+React Router: Biblioteca para navegação entre diferentes páginas da aplicação.
+React-Table: Ferramenta para construção de tabelas dinâmicas.
+React-Select: Componente de seleção personalizada com suporte a múltiplas opções.
+React Toastify: Para exibição de notificações no estilo "toast".
+Moment.js: Biblioteca para manipulação de datas.
+Multiselect React Dropdown: Componente de seleção múltipla em dropdown.
+Pré-requisitos
+Certifique-se de que você tem as seguintes ferramentas instaladas:
+Node.js (versão recomendada: 14 ou superior)
+npm (gerenciador de pacotes do Node.js)
+Instalação
+Clone este repositório para sua máquina local:
+https://github.com/Madson-Carvalho/Allocation-Manager-Fe
+Instale as dependências do projeto:
+npm install
+Scripts
+O projeto usa os seguintes scripts para facilitar o desenvolvimento:
+Iniciar o servidor de desenvolvimento:
+npm start
+Este comando inicia o servidor de desenvolvimento e abre a aplicação em http://localhost:3000.
+Gerar uma build de produção:
+npm run build
+Este comando cria uma versão otimizada do projeto para produção.
+Executar os testes:
+npm test
+Executa os testes configurados no projeto usando o Jest.
+Ejetar configurações padrão (se necessário):
+npm run eject
+Caso precise personalizar as configurações de build e configuração do projeto.
+Estrutura do Projeto
+A estrutura do diretório do projeto segue o padrão do Create React App com algumas modificações para incluir bibliotecas adicionais de UI e ferramentas de desenvolvimento:
+/public
+  - index.html
+/src
+  /components
+    - Componentes reutilizáveis da interface
+  /pages
+    - Páginas principais da aplicação
+  /services
+    - Funções de comunicação com o back-end
+  App.js
+  index.js
+  ...
+Contribuição
+Sinta-se à vontade para contribuir! Se você encontrar algum problema ou desejar adicionar melhorias, fique à vontade para criar uma issue ou enviar um pull request.
+Licença
+Este projeto está licenciado sob a MIT License - veja o arquivo LICENSE para mais detalhes.
+Equipe de Desenvolvimento
+Gabriel Monteiro de Souza
+Madson Raynon da Silva Carvalho
+Mateus Francisco Kons
+Mayra Kauane da Silva Carvalho
+Rodrigo Teles Dondé
+Yuri Grams Broering
