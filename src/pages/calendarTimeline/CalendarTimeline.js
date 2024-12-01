@@ -52,14 +52,14 @@ const CalendarTimeline = () => {
     const [startDate, setStartDate] = useState(moment().startOf(MONTH));
     const [endDate, setEndDate] = useState(moment().endOf(MONTH));
 
-    const groupsAsEmployee = allocations?.map(allocation => ({
-        id: allocation.employee.employeeId,
-        title: allocation.employee.name,
+    const groupsAsEmployee = allocations?.map((allocation, index) => ({
+        id: `${allocation.employee.employeeId}-${index}`,
+        title: allocation.employee.name
     })) ?? [];
 
-    const itemsAsEmployee = allocations?.map(allocation => ({
-        id: allocation.project.projectId,
-        group: allocation.employee.employeeId,
+    const itemsAsEmployee = allocations?.map((allocation, index) => ({
+        id: `${allocation.project.projectId}-${index}`,
+        group: `${allocation.employee.employeeId}-${index}`,
         title: allocation.project.name,
         start_time: moment(allocation.startDate),
         end_time: moment(allocation.endDate),
@@ -68,14 +68,14 @@ const CalendarTimeline = () => {
         canChangeGroup: true,
     })) ?? [];
 
-    const groupsAsProject = allocations?.map(allocation => ({
-        id: allocation.project.projectId,
+    const groupsAsProject = allocations?.map((allocation, index) => ({
+        id: `${allocation.project.projectId}-${index}`,
         title: allocation.project.name,
     })) ?? [];
 
-    const itemsAsProject = allocations?.map(allocation => ({
-        id: allocation.employee.employeeId,
-        group: allocation.project.projectId,
+    const itemsAsProject = allocations?.map((allocation, index) => ({
+        id: `${allocation.employee.employeeId}-${index}`,
+        group: `${allocation.project.projectId}-${index}`,
         title: allocation.employee.name,
         start_time: moment(allocation.startDate),
         end_time: moment(allocation.endDate),
@@ -85,7 +85,7 @@ const CalendarTimeline = () => {
         additionalData: {
             jobRole: allocation.employee.jobRole,
             qualification: allocation.employee.qualification,
-            specializations: allocation.employee.specializations
+            specializations: allocation.employee.specializations,
         },
     })) ?? [];
 
@@ -103,8 +103,33 @@ const CalendarTimeline = () => {
     useEffect(() => {
         const params = mountFilter();
         const url = `allocations/find-all?${params.toString()}`;
-        httpGet(url, setAllocations);
+
+        httpGet(url, (data) => {
+            const updatedData = data.map(allocation => ({
+                ...allocation,
+                project: typeof allocation.project === 'string'
+                    ? getProjectDetails(allocation.project, data)
+                    : allocation.project,
+                employee: typeof allocation.employee === 'string'
+                    ? getEmployeeDetails(allocation.employee, data)
+                    : allocation.employee,
+            }));
+            console.log(updatedData)
+            setAllocations(updatedData);
+        });
     }, [filters]);
+
+    const getProjectDetails = (projectId, data) => {
+        return data.find(allocation =>
+            allocation.project && typeof allocation.project === 'object' && allocation.project.projectId === projectId
+        )?.project;
+    };
+
+    const getEmployeeDetails = (employeeId, data) => {
+        return data.find(allocation =>
+            allocation.employee && typeof allocation.employee === 'object' && allocation.employee.employeeId === employeeId
+        )?.employee;
+    };
 
     useEffect(() => {
         const handleMouseClick = (event) => {
@@ -128,9 +153,9 @@ const CalendarTimeline = () => {
         let selectedAllocation;
 
         if (isEmployeeAsGroup) {
-            selectedAllocation = allocations.find(allocation => allocation.project.projectId === itemId);
+            selectedAllocation = allocations.find(allocation => allocation.project.projectId === itemId.replace(/-\d+$/, ''));
         } else {
-            selectedAllocation = allocations.find(allocation => allocation.employee.employeeId === itemId);
+            selectedAllocation = allocations.find(allocation => allocation.employee.employeeId === itemId.replace(/-\d+$/, ''));
         }
 
         setSelectedItem(selectedAllocation);
