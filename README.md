@@ -65,9 +65,9 @@ Sinta-se à vontade para contribuir! Se você encontrar algum problema ou deseja
 Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
 
 ## Equipe de Desenvolvimento
-Gabriel Monteiro de Souza
-Madson Raynon da Silva Carvalho
-Mateus Francisco Kons
-Mayra Kauane da Silva Carvalho
-Rodrigo Teles Dondé
+Gabriel Monteiro de Souza<br>
+Madson Raynon da Silva Carvalho<br>
+Mateus Francisco Kons<br>
+Mayra Kauane da Silva Carvalho<br>
+Rodrigo Teles Dondé<br>
 Yuri Grams Broering
